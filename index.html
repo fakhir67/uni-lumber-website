@@ -17,8 +17,8 @@
       --white: #fbfaf7;
       --ink: #17201e;
       --muted: #61706b;
-      --rust: #c95f38;
-      --sage: #a8b8ac;
+      --rust: #b75d35;
+      --sage: #a9b9ab;
       --line: #d4d5ce;
       --sans: "IBM Plex Sans", sans-serif;
       --serif: "Source Serif 4", Georgia, serif;
@@ -138,6 +138,26 @@
     .direction-item h3 { margin: 0 0 1.5rem; font: 500 clamp(2.2rem, 3.8vw, 3.8rem) var(--serif); }
     .direction-item p { max-width: 550px; margin: 0; color: var(--muted); line-height: 1.75; }
     .approval-note { margin-top: 1.2rem; color: #80604d; font: .6rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+
+    .species { background: #e8e2d7; }
+    .species-head { display: grid; grid-template-columns: 1.05fr .95fr; gap: 4rem; align-items: end; }
+    .species-head p { margin: 0; max-width: 580px; color: var(--muted); line-height: 1.75; }
+    .species-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; margin-top: 4.5rem; border-top: 1px solid var(--ink); }
+    .species-row { display: grid; grid-template-columns: 38px 1fr auto; gap: 1rem; align-items: center; min-height: 110px; border-bottom: 1px solid rgba(23,32,30,.45); }
+    .species-no { align-self: start; padding-top: 1.35rem; color: var(--muted); font: .58rem var(--mono); }
+    .species-name strong { display: block; font: 500 clamp(1.35rem, 2vw, 1.8rem)/1.1 var(--serif); }
+    .species-name em { display: block; margin-top: .35rem; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+    .species-class { max-width: 92px; text-align: right; color: var(--muted); font: .56rem/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .species-source { margin-top: 1.5rem; color: var(--muted); font: .58rem/1.65 var(--mono); }
+
+    .company-gallery { background: var(--white); }
+    .gallery-grid { display: grid; grid-template-columns: 1.25fr .75fr .75fr; grid-template-rows: 300px 300px; gap: 1rem; margin-top: 4rem; }
+    .gallery-item { position: relative; overflow: hidden; background: #c7c8c2; }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item:last-child { grid-column: 2 / 4; }
+    .gallery-item img { height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .gallery-item:hover img { transform: scale(1.025); }
+    .gallery-item figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem 1rem 1rem; color: white; background: linear-gradient(0deg, rgba(8,20,17,.78), transparent); font: .58rem/1.45 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
     /* COMPLIANCE */
     .compliance { background: #e4e7df; }
     .compliance-lead { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
@@ -166,6 +186,7 @@
     .map-caption { position: absolute; z-index: 2; left: 1.25rem; bottom: 1.25rem; max-width: 390px; padding: 1rem 1.15rem; background: var(--white); box-shadow: 0 12px 28px rgba(0,0,0,.14); }
     .map-caption strong { display: block; font: 500 1.1rem var(--serif); }
     .map-caption span { display: block; margin-top: .3rem; color: var(--muted); font-size: .76rem; }
+    .map-caption a { display: inline-block; margin-top: .75rem; color: var(--rust); font: .58rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 
     /* CONTACT_FOOTER */
     .contact { background: var(--rust); color: white; }
@@ -200,6 +221,7 @@
       .trust-grid { grid-template-columns: 1fr 1fr; }
       .trust-item { border-bottom: 1px solid var(--line); }
       .profile-grid, .contact-grid { grid-template-columns: 1fr; }
+      .species-head { grid-template-columns: 1fr; }
       .profile-lead { max-width: 700px; }
       .facility, .facility:nth-child(even) { grid-template-columns: 1fr 1fr; }
       .cap-row { grid-template-columns: 70px 1fr; }
@@ -234,6 +256,10 @@
       .facility-content { min-height: 470px; }
       .route-line { grid-template-columns: 1fr 1fr; gap: 2rem 0; }
       .direction-grid { grid-template-columns: 1fr; }
+      .species-grid { grid-template-columns: 1fr; gap: 0; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 380px 240px 240px; }
+      .gallery-item:first-child { grid-column: 1/-1; grid-row: auto; }
+      .gallery-item:last-child { grid-column: 1/-1; }
       .record { grid-template-columns: 1fr; gap: .8rem; }
       .record-date { grid-column: 1; }
       .map-shell { grid-template-columns: 1fr; }
@@ -259,7 +285,7 @@
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Uni-Lumber home"><span class="brand-mark">UL</span><span class="brand-name">Uni-Lumber</span></a>
       <nav class="main-nav" id="mainNav" aria-label="Primary navigation">
-        <a href="#company">Company</a><a href="#operations">Operations</a><a href="#capabilities">Capabilities</a><a href="#locations">Locations</a><a class="nav-button" href="#contact">Enquire</a>
+        <a href="#company">Company</a><a href="#operations">Sawmills</a><a href="#species">Species</a><a href="#locations">Locations</a><a class="nav-button" href="#contact">Enquire</a>
       </nav>
       <button class="menu-button" id="menuButton" aria-controls="mainNav" aria-expanded="false">Menu</button>
     </div>
@@ -270,20 +296,20 @@
     <div class="hero-copy">
       <div class="hero-copy-inner">
         <p class="kicker">Sabah · Malaysia</p>
-        <h1>Sabah timber.<br><span>Verified origins.</span></h1>
-        <p class="hero-intro">Uni-Lumber coordinates Sabah-sourced sawn timber through owned mill operations in Keningau and Tawau.</p>
+        <h1>Tropical timber.<br><span>Rooted in Sabah.</span></h1>
+        <p class="hero-intro">Established in 1996, Uni-Lumber manufactures and exports tropical sawn timber through its owned sawmills in Keningau and Tawau.</p>
         <div class="hero-actions"><a class="primary-action" href="#operations">View operations <span>→</span></a><a class="text-action" href="#contact">Product enquiry</a></div>
       </div>
     </div>
     <div class="hero-media">
-      <img src="https://images.unsplash.com/photo-1749572855201-feb5cf658479?fm=jpg&q=85&w=1800&auto=format&fit=crop" alt="Sawmill machinery processing a timber log">
-      <span class="hero-index">Uni-Lumber · Sawn timber network</span>
-      <div class="hero-caption"><span>Two owned sawmills</span><span>Keningau / Tawau</span></div>
+      <img src="assets/gold-rank-sawmill.webp" alt="Timber stacks inside Gold Rank sawmill in Tawau">
+      <span class="hero-index">Official company photograph · Gold Rank, Tawau</span>
+      <div class="hero-caption"><span>Gold Rank Sdn. Bhd.</span><span>Tawau, Sabah</span></div>
     </div>
   </section>
   <div class="trust-bar">
     <div class="container trust-grid">
-      <div class="trust-item"><strong>Uni-Lumber Sdn. Bhd.</strong><span>Reg. 199601012704 (385054-D)</span></div>
+      <div class="trust-item"><strong>Established 1996</strong><span>Reg. 199601012704 (385054-D)</span></div>
       <div class="trust-item"><strong>2 owned sawmills</strong><span>Keningau + Tawau</span></div>
       <div class="trust-item"><strong>Sabah source</strong><span>Assessed material origin</span></div>
       <div class="trust-item"><strong>Local + export</strong><span>Documented markets</span></div>
@@ -294,42 +320,44 @@
     <section class="profile section" id="company">
       <div class="container">
         <div class="profile-grid">
-          <div class="profile-lead reveal"><p class="kicker">Company</p><h2 class="heading">A connected timber business, grounded in Sabah.</h2></div>
+          <div class="profile-lead reveal"><p class="kicker">About Uni-Lumber</p><h2 class="heading">Sabah-based since 1996.</h2></div>
           <div class="profile-copy reveal">
-            <p class="body-lg">Based in Kota Kinabalu, Uni-Lumber Sdn. Bhd. is assessed as an exporter and importer of sawn timber.</p>
-            <p>Public forestry assessments record that the company purchases round logs from Sabah and directs material to its two owned sawmills: Irama Ramai Sdn. Bhd. in Keningau and Gold Rank Sdn. Bhd. in Tawau. Uni-Lumber manages sales to local and documented international markets.</p>
+            <p class="body-lg">Uni-Lumber Sdn. Bhd. is a Kota Kinabalu-based exporter and manufacturer of tropical sawn timber.</p>
+            <p>Its supply network connects two owned mills: Irama Ramai Sdn. Bhd. in Keningau and Gold Rank Sdn. Bhd. in Tawau. Public Sabah TLAS assessment records describe Sabah-sourced round logs being directed to these facilities for conversion, with Uni-Lumber handling local sales and exports.</p>
             <dl class="fact-list">
-              <div class="fact-row"><dt>Registered office</dt><dd>13th Floor, Wisma Merdeka Phase II, Jalan Tun Razak, Kota Kinabalu</dd></div>
+              <div class="fact-row"><dt>Main office</dt><dd>Lot No. 1328, 13th Floor, Wisma Merdeka Phase II, Jalan Tun Razak, 88000 Kota Kinabalu, Sabah</dd></div>
               <div class="fact-row"><dt>Product group</dt><dd>Sawn timber</dd></div>
               <div class="fact-row"><dt>Material origin</dt><dd>Sabah, Malaysia</dd></div>
               <div class="fact-row"><dt>Documented markets</dt><dd>Malaysia, United Kingdom, Belgium and the Netherlands</dd></div>
             </dl>
           </div>
         </div>
-        <div class="story-image reveal"><img src="https://plus.unsplash.com/premium_photo-1664303728191-c20df8ee9775?fm=jpg&q=82&w=2200&auto=format&fit=crop" alt="Stacked timber logs at an industrial yard" loading="lazy"><span class="image-note">Stock photography · replace with Uni-Lumber operational photography when available</span></div>
+        <div class="story-image reveal"><img src="assets/irama-entrance.webp" alt="Entrance to Irama Ramai Sdn. Bhd. sawmill in Keningau" loading="lazy"><span class="image-note">Irama Ramai sawmill, Keningau · official Uni-Lumber Facebook photograph</span></div>
       </div>
     </section>
 
     <!-- OPERATIONS -->
     <section class="operations section" id="operations">
       <div class="container">
-        <div class="section-head reveal"><div><p class="kicker">Operations</p><h2 class="heading">Two facilities.<br>One supply network.</h2></div><p>The group’s mills connect Sabah’s Interior Division and east coast. Published assessments provide the operating scope and addresses shown here.</p></div>
+        <div class="section-head reveal"><div><p class="kicker">Sawmill network</p><h2 class="heading">Keningau to Tawau.</h2></div><p>The group’s two owned facilities connect Sabah’s Interior Division and east coast. Addresses, company numbers and operating scopes are drawn from public assessment records.</p></div>
         <article class="facility reveal">
-          <div class="facility-media"><img src="https://plus.unsplash.com/premium_photo-1661914559864-198c8c433170?fm=jpg&q=82&w=1600&auto=format&fit=crop" alt="Timber processing equipment in a sawmill" loading="lazy"></div>
+          <div class="facility-media"><img src="assets/irama-facility.webp" alt="Irama Ramai sawmill buildings in Keningau" loading="lazy"></div>
           <div class="facility-content">
             <div class="facility-number label"><span>Facility 01</span><span>Keningau</span></div>
             <h3>Irama Ramai<br>Sdn. Bhd.</h3>
-            <p>The latest public assessment located describes a sawmill, kiln-dry plant and wood-preservation plant producing sawn timber and moulding.</p>
-            <dl class="facility-meta"><div><dt>Address</dt><dd>Batu 5, Jalan Keningau–Kimanis, Keningau</dd></div><div><dt>Registration</dt><dd>200201004805<br>(572468-V)</dd></div></dl>
+            <p>The August 2025 public assessment describes a sawmill, kiln-dry plant and wood-preservation plant, with sawn timber and moulding within its assessed product group.</p>
+            <dl class="facility-meta"><div><dt>Address</dt><dd>Batu 5, Jalan Keningau–Kimanis, Keningau</dd></div><div><dt>Registration</dt><dd>200201004805<br>(572468-V)</dd></div><div><dt>Telephone</dt><dd>+60 16 662 8499</dd></div><div><dt>Map pin</dt><dd>5.3706344, 116.1251054</dd></div></dl>
+            <p style="margin-top:1.5rem"><a class="link-arrow" href="https://www.google.com/maps?q=5.3706344,116.1251054" target="_blank" rel="noopener">Open exact pin</a></p>
           </div>
         </article>
         <article class="facility reveal">
-          <div class="facility-media"><img src="https://plus.unsplash.com/premium_photo-1663012912880-7b2baa3fafa6?fm=jpg&q=82&w=1600&auto=format&fit=crop" alt="Processed timber boards stacked at a mill" loading="lazy"></div>
+          <div class="facility-media"><img src="assets/gold-rank-logs.webp" alt="Round logs documented in Gold Rank's official sawmill album" loading="lazy"></div>
           <div class="facility-content">
             <div class="facility-number label"><span>Facility 02</span><span>Tawau</span></div>
             <h3>Gold Rank<br>Sdn. Bhd.</h3>
-            <p>Gold Rank’s current public compliance statement covers sawmilling of Sabah-origin timber at its Bombalai facility in Tawau.</p>
-            <dl class="facility-meta"><div><dt>Address</dt><dd>Off KM 19, Kg Pitas, Bombalai, Merotai Highway, Tawau</dd></div><div><dt>Registration</dt><dd>198901012367<br>(189675-K)</dd></div></dl>
+            <p>Gold Rank’s February 2026 public compliance statement covers Sabah-origin sawn timber at its Bombalai facility in Tawau.</p>
+            <dl class="facility-meta"><div><dt>Address</dt><dd>Off KM 19, Kg Pitas, Bombalai, Merotai Highway, Tawau</dd></div><div><dt>Registration</dt><dd>198901012367<br>(189675-K)</dd></div><div><dt>Telephone</dt><dd>+60 14 283 6028</dd></div><div><dt>Map pin</dt><dd>4.3491798, 117.8109154</dd></div></dl>
+            <p style="margin-top:1.5rem"><a class="link-arrow" href="https://www.google.com/maps?q=4.3491798,117.8109154" target="_blank" rel="noopener">Open exact pin</a></p>
           </div>
         </article>
       </div>
@@ -340,10 +368,48 @@
         <div class="section-head reveal"><div><p class="kicker">Capabilities</p><h2 class="heading">From Sabah log<br>to sawn product.</h2></div><p>Only activities supported by public assessment records are shown. Capacity figures and machinery specifications should be added after company confirmation.</p></div>
         <div class="cap-list">
           <article class="cap-row reveal"><svg class="cap-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="20" stroke="currentColor"/><circle cx="26" cy="26" r="11" stroke="currentColor"/><path d="M26 6v40M6 26h40" stroke="currentColor"/></svg><h3>Sawmilling</h3><p>Round logs purchased in Sabah are routed to Keningau and Tawau for conversion into sawn timber.</p></article>
-          <article class="cap-row reveal"><svg class="cap-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M8 13h36v26H8zM15 20h22M15 27h22M15 34h14" stroke="currentColor"/></svg><h3>Drying & preservation</h3><p>Irama Ramai’s latest located assessment includes kiln-dry and wood-preservation plants within its company scope.</p></article>
+          <article class="cap-row reveal"><svg class="cap-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M8 13h36v26H8zM15 20h22M15 27h22M15 34h14" stroke="currentColor"/></svg><h3>Drying & preservation</h3><p>Irama Ramai’s 2025 assessment scope includes kiln-dry and wood-preservation plants. Uni-Lumber’s 2026 report also records external kiln-drying services by Carl Ronnow Logistics.</p></article>
           <article class="cap-row reveal"><svg class="cap-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M6 34h40M11 34V19h25l6 8v7M17 40a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM38 40a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor"/></svg><h3>Trade & dispatch</h3><p>Uni-Lumber manages local sales and export trade. Recent reports document buyers in the UK and continental Europe.</p></article>
         </div>
         <div class="route-line reveal"><div class="route-stage"><span>01 / Source</span><strong>Sabah logs</strong></div><div class="route-stage"><span>02 / Convert</span><strong>Keningau + Tawau</strong></div><div class="route-stage"><span>03 / Prepare</span><strong>Sawn timber</strong></div><div class="route-stage"><span>04 / Supply</span><strong>Local + export</strong></div></div>
+      </div>
+    </section>
+
+    <!-- SPECIES -->
+    <section class="species section" id="species">
+      <div class="container">
+        <div class="species-head reveal">
+          <div><p class="kicker">Documented timber range</p><h2 class="heading">Local names.<br>Botanical clarity.</h2></div>
+          <p>These names are recorded in Irama Ramai’s August 2025 Sabah TLAS assessment scope. Availability depends on current lawful supply, grade, dimensions and order confirmation. A genus followed by “spp.” represents several species, not one exact species.</p>
+        </div>
+        <div class="species-grid reveal">
+          <article class="species-row"><span class="species-no">01</span><div class="species-name"><strong>Red Seraya</strong><em>Shorea spp. · Light Red Meranti group</em></div><span class="species-class">Light hardwood<br>385–755 kg/m³</span></article>
+          <article class="species-row"><span class="species-no">02</span><div class="species-name"><strong>Yellow Seraya</strong><em>Shorea spp. · Yellow Meranti group</em></div><span class="species-class">Light hardwood<br>575–735 kg/m³</span></article>
+          <article class="species-row"><span class="species-no">03</span><div class="species-name"><strong>Selangan Batu</strong><em>Shorea inappendiculata</em></div><span class="species-class">Heavy hardwood<br>species record</span></article>
+          <article class="species-row"><span class="species-no">04</span><div class="species-name"><strong>Keruing</strong><em>Dipterocarpus spp.</em></div><span class="species-class">Medium hardwood<br>595–865 kg/m³*</span></article>
+          <article class="species-row"><span class="species-no">05</span><div class="species-name"><strong>Kapur</strong><em>Dryobalanops spp.</em></div><span class="species-class">Medium hardwood<br>580–820 kg/m³</span></article>
+          <article class="species-row"><span class="species-no">06</span><div class="species-name"><strong>Oba Suluk</strong><em>Shorea pauciflora · Dark Red Meranti</em></div><span class="species-class">Light hardwood<br>species record</span></article>
+          <article class="species-row"><span class="species-no">07</span><div class="species-name"><strong>Mempening</strong><em>Lithocarpus spp. · Sabah oak</em></div><span class="species-class">Medium hardwood<br>575–1,010 kg/m³</span></article>
+          <article class="species-row"><span class="species-no">08</span><div class="species-name"><strong>Keranji</strong><em>Dialium spp.</em></div><span class="species-class">Heavy hardwood<br>755–1,250 kg/m³</span></article>
+          <article class="species-row"><span class="species-no">09</span><div class="species-name"><strong>Kedondong</strong><em>Spondias dulcis · assessment entry</em></div><span class="species-class">Species entry<br>confirm order</span></article>
+          <article class="species-row"><span class="species-no">10</span><div class="species-name"><strong>Gagil</strong><em>Hopea sangal · Merawan group</em></div><span class="species-class">Medium hardwood<br>group properties</span></article>
+          <article class="species-row"><span class="species-no">11</span><div class="species-name"><strong>Kempas</strong><em>Koompassia malaccensis</em></div><span class="species-class">Medium hardwood<br>770–1,120 kg/m³</span></article>
+          <article class="species-row"><span class="species-no">12</span><div class="species-name"><strong>Resak Batu</strong><em>Cotylelobium melanoxylon · Resak group</em></div><span class="species-class">Heavy hardwood<br>group properties</span></article>
+        </div>
+        <p class="species-source">Sources: Irama Ramai Sabah TLAS assessment (13 August 2025); Malaysian Timber Council timber-species reference. *Keruing density shown for Sabah species. Scientific names follow the assessment nomenclature; current taxonomic databases may place Shorea pauciflora under Rubroshorea pauciflora. Confirm species, origin documentation, grade and availability for every order.</p>
+      </div>
+    </section>
+
+    <!-- OFFICIAL PHOTOGRAPHY -->
+    <section class="company-gallery section">
+      <div class="container">
+        <div class="section-head reveal"><div><p class="kicker">Inside the operations</p><h2 class="heading">The real mills.<br>The real material.</h2></div><p>Photography sourced from Uni-Lumber’s official public Facebook albums, including the Irama Ramai and Gold Rank sawmill collections.</p></div>
+        <div class="gallery-grid reveal">
+          <figure class="gallery-item"><img src="assets/irama-timber.webp" alt="Sawn timber stored at Irama Ramai sawmill" loading="lazy"><figcaption>Processed timber · Irama Ramai, Keningau</figcaption></figure>
+          <figure class="gallery-item"><img src="assets/timber-bundles.webp" alt="Bundles of sawn timber prepared for dispatch" loading="lazy"><figcaption>Prepared timber bundles</figcaption></figure>
+          <figure class="gallery-item"><img src="assets/gold-rank-sawmill.webp" alt="Timber stacks inside Gold Rank sawmill" loading="lazy"><figcaption>Gold Rank sawmill · Tawau</figcaption></figure>
+          <figure class="gallery-item"><img src="assets/irama-facility.webp" alt="Irama Ramai sawmill facility in Keningau" loading="lazy"><figcaption>Irama Ramai facility · Keningau</figcaption></figure>
+        </div>
       </div>
     </section>
 
@@ -353,8 +419,8 @@
         <p class="kicker reveal">Corporate direction</p>
         <h2 class="heading reveal">Built for dependable supply<br>and lasting relationships.</h2>
         <div class="direction-grid reveal">
-          <article class="direction-item"><h3>Vision</h3><p>To be a trusted Sabah timber group recognised for dependable products, responsible operations and durable business relationships.</p></article>
-          <article class="direction-item"><h3>Mission</h3><p>To connect capable local sawmill operations, disciplined processing and responsive service to create value for customers and the communities where we operate.</p></article>
+          <article class="direction-item"><h3>Vision</h3><p>To be a trusted Sabah timber group, recognised for legally verified supply, consistent quality and enduring customer relationships.</p></article>
+          <article class="direction-item"><h3>Mission</h3><p>To connect Sabah timber with disciplined processing, clear documentation and responsive service for local and international customers.</p></article>
         </div>
         <p class="approval-note">Proposed wording · requires Uni-Lumber management approval before publication</p>
       </div>
@@ -374,17 +440,17 @@
     <!-- LOCATIONS -->
     <section class="locations section" id="locations">
       <div class="container">
-        <div class="section-head reveal"><div><p class="kicker">Locations</p><h2 class="heading">Operating across Sabah.</h2></div><p>The map uses postal addresses published in public assessment records. Confirm the exact entrance coordinates before arranging a mill visit.</p></div>
+        <div class="section-head reveal"><div><p class="kicker">Verified locations</p><h2 class="heading">Three exact map pins.</h2></div><p>Each pin was matched to a Google Maps business listing and cross-checked against the office or mill address in public company assessment records.</p></div>
         <div class="map-shell reveal">
           <div class="map-menu" role="tablist" aria-label="Company locations">
-            <button class="map-option active" role="tab" aria-selected="true" data-place="Wisma Merdeka Phase II, Jalan Tun Razak, 88000 Kota Kinabalu, Sabah, Malaysia" data-title="Uni-Lumber Sdn. Bhd." data-address="13th Floor, Wisma Merdeka Phase II · Kota Kinabalu"><span>Head office</span><strong>Kota Kinabalu</strong><small>Jalan Tun Razak</small></button>
-            <button class="map-option" role="tab" aria-selected="false" data-place="Batu 5, Jalan Keningau-Kimanis, Keningau, Sabah, Malaysia" data-title="Irama Ramai Sdn. Bhd." data-address="Batu 5, Jalan Keningau–Kimanis · Keningau"><span>Sawmill 01</span><strong>Keningau</strong><small>Jalan Keningau–Kimanis</small></button>
-            <button class="map-option" role="tab" aria-selected="false" data-place="Off KM 19, Kg Pitas, Bombalai, Merotai Highway, Tawau, Sabah, Malaysia" data-title="Gold Rank Sdn. Bhd." data-address="Off KM 19, Kg Pitas, Bombalai · Tawau"><span>Sawmill 02</span><strong>Tawau</strong><small>Merotai Highway</small></button>
-            <p class="map-disclaimer">Published addresses · exact gate coordinates require company confirmation.</p>
+            <button class="map-option active" role="tab" aria-selected="true" data-place="5.985529,116.075429" data-link="https://www.google.com/maps?q=5.985529,116.075429" data-title="Uni-Lumber Sdn. Bhd." data-address="Lot 1328, 13th Floor, Wisma Merdeka Phase II · 5.985529, 116.075429"><span>Head office</span><strong>Kota Kinabalu</strong><small>Wisma Merdeka Phase II</small></button>
+            <button class="map-option" role="tab" aria-selected="false" data-place="5.3706344,116.1251054" data-link="https://www.google.com/maps?q=5.3706344,116.1251054" data-title="Irama Ramai Sdn. Bhd." data-address="Batu 5, Jalan Keningau–Kimanis · 5.3706344, 116.1251054"><span>Sawmill 01</span><strong>Keningau</strong><small>Jalan Keningau–Kimanis</small></button>
+            <button class="map-option" role="tab" aria-selected="false" data-place="4.3491798,117.8109154" data-link="https://www.google.com/maps?q=4.3491798,117.8109154" data-title="Gold Rank Sdn. Bhd." data-address="Off KM 19, Kg Pitas, Bombalai · 4.3491798, 117.8109154"><span>Sawmill 02</span><strong>Tawau</strong><small>Merotai Highway</small></button>
+            <p class="map-disclaimer">Business pins verified against public addresses on 11 November 2026.</p>
           </div>
           <div class="map-frame">
-            <iframe id="mapFrame" title="Map showing Uni-Lumber office in Kota Kinabalu" src="https://www.google.com/maps?q=Wisma%20Merdeka%20Phase%20II%2C%20Jalan%20Tun%20Razak%2C%2088000%20Kota%20Kinabalu%2C%20Sabah%2C%20Malaysia&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <div class="map-caption"><strong id="mapTitle">Uni-Lumber Sdn. Bhd.</strong><span id="mapAddress">13th Floor, Wisma Merdeka Phase II · Kota Kinabalu</span></div>
+            <iframe id="mapFrame" title="Map showing Uni-Lumber office in Kota Kinabalu" src="https://www.google.com/maps?q=5.985529%2C116.075429&z=17&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-caption"><strong id="mapTitle">Uni-Lumber Sdn. Bhd.</strong><span id="mapAddress">Lot 1328, 13th Floor, Wisma Merdeka Phase II · 5.985529, 116.075429</span><a id="mapLink" href="https://www.google.com/maps?q=5.985529,116.075429" target="_blank" rel="noopener">Open exact pin ↗</a></div>
           </div>
         </div>
       </div>
@@ -396,7 +462,7 @@
         <div class="contact-copy reveal">
           <p class="kicker">Product & supply enquiries</p><h2 class="heading">Let’s discuss<br>your requirements.</h2>
           <p>Contact the Kota Kinabalu office for product availability, specification requests, supply partnerships or company information.</p>
-          <div class="contact-lines"><div class="contact-line"><span>Telephone</span><strong><a href="tel:+6088269499">+60 88 269 499</a></strong></div><div class="contact-line"><span>Email</span><strong><a href="mailto:unilumber@yahoo.com">unilumber@yahoo.com</a></strong></div><div class="contact-line"><span>Office</span><strong>Wisma Merdeka Phase II, Kota Kinabalu</strong></div></div>
+          <div class="contact-lines"><div class="contact-line"><span>Telephone</span><strong><a href="tel:+6088269499">+60 88 269 499</a></strong></div><div class="contact-line"><span>Email</span><strong><a href="mailto:unilumber@yahoo.com">unilumber@yahoo.com</a></strong></div><div class="contact-line"><span>Office</span><strong>Lot 1328, 13th Floor, Wisma Merdeka Phase II, Jalan Tun Razak, 88000 Kota Kinabalu, Sabah</strong></div></div>
         </div>
         <form class="contact-form reveal" id="contactForm">
           <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name" placeholder="Your name"></div>
@@ -413,8 +479,8 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="footer-main"><div><div class="footer-brand">Uni-Lumber Sdn. Bhd.</div></div><div class="footer-col"><strong>Operations</strong><p>Kota Kinabalu<br>Keningau<br>Tawau<br>Sabah, Malaysia</p></div><div class="footer-col"><strong>Public sources</strong><a href="http://stia.com.my/members_view.cfm?category=Veneering&id=1204" target="_blank" rel="noopener">STIA member record ↗</a><a href="https://gfsinc.biz/wp-content/uploads/2019/05/GFSSBH-004-984-Sabah-TLAS-P5-6-78-optional-Summary-Uni-Lumber-Jul-2026.pdf" target="_blank" rel="noopener">2026 GFS assessment ↗</a></div></div>
-      <div class="footer-bottom"><span>© <span id="year"></span> Uni-Lumber Sdn. Bhd.</span><span>Research checked 11 Nov 2026 · Stock photography used</span></div>
+      <div class="footer-main"><div><div class="footer-brand">Uni-Lumber Sdn. Bhd.</div></div><div class="footer-col"><strong>Operations</strong><p>Kota Kinabalu<br>Keningau<br>Tawau<br>Sabah, Malaysia</p></div><div class="footer-col"><strong>Public sources</strong><a href="http://stia.com.my/members_view.cfm?category=Veneering&id=1204" target="_blank" rel="noopener">STIA member record ↗</a><a href="https://gfsinc.biz/wp-content/uploads/2019/05/GFSSBH-004-984-Sabah-TLAS-P5-6-78-optional-Summary-Uni-Lumber-Jul-2026.pdf" target="_blank" rel="noopener">2026 GFS assessment ↗</a><a href="https://www.facebook.com/UniLumber/photos/" target="_blank" rel="noopener">Official company photographs ↗</a><a href="https://mtc.com.my/resources-TechnicalInfo" target="_blank" rel="noopener">Malaysian Timber Council ↗</a></div></div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Uni-Lumber Sdn. Bhd.</span><span>Facts and map pins checked 11 Nov 2026 · Official company photography</span></div>
     </div>
   </footer>
   <script>
@@ -444,10 +510,11 @@
     document.querySelectorAll('.map-option').forEach(button => button.addEventListener('click', () => {
       document.querySelectorAll('.map-option').forEach(item => { item.classList.remove('active'); item.setAttribute('aria-selected', 'false'); });
       button.classList.add('active'); button.setAttribute('aria-selected', 'true');
-      frame.src = `https://www.google.com/maps?q=${encodeURIComponent(button.dataset.place)}&output=embed`;
+      frame.src = `https://www.google.com/maps?q=${encodeURIComponent(button.dataset.place)}&z=17&output=embed`;
       frame.title = `Map showing ${button.dataset.title}`;
       document.getElementById('mapTitle').textContent = button.dataset.title;
       document.getElementById('mapAddress').textContent = button.dataset.address;
+      document.getElementById('mapLink').href = button.dataset.link;
     }));
 
     document.getElementById('contactForm').addEventListener('submit', event => {
