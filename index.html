@@ -11,15 +11,15 @@
   <style>
     /* TOKENS_BASE */
     :root {
-      --forest: #102c27;
-      --forest-2: #1c423a;
-      --stone: #f2efe8;
-      --white: #fbfaf7;
-      --ink: #17201e;
-      --muted: #61706b;
-      --rust: #b75d35;
-      --sage: #a9b9ab;
-      --line: #d4d5ce;
+      --forest: #0b0b09;
+      --forest-2: #171713;
+      --stone: #e7dfd2;
+      --white: #f4eddf;
+      --ink: #11110e;
+      --muted: #68645d;
+      --rust: #ff5a1f;
+      --sage: #ffb28f;
+      --line: #c9c0b2;
       --sans: "IBM Plex Sans", sans-serif;
       --serif: "Source Serif 4", Georgia, serif;
       --mono: "IBM Plex Mono", monospace;
@@ -33,58 +33,59 @@
     img { width: 100%; display: block; }
     a { color: inherit; }
     button, input, textarea { font: inherit; }
-    ::selection { background: var(--rust); color: white; }
+    ::selection { background: var(--rust); color: var(--ink); }
     .container { width: min(100%, var(--max)); margin: auto; padding-left: var(--gutter); padding-right: var(--gutter); }
     .section { padding-top: clamp(5.5rem, 10vw, 9rem); padding-bottom: clamp(5.5rem, 10vw, 9rem); }
-    .kicker { margin: 0 0 1.25rem; color: var(--rust); font: 500 .7rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .kicker { margin: 0 0 1.25rem; color: var(--rust); font: 500 .7rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
     .heading { margin: 0; font: 500 clamp(2.8rem, 5.8vw, 5.6rem)/.98 var(--serif); letter-spacing: -.045em; }
     .heading-sm { margin: 0; font: 500 clamp(2.1rem, 3.6vw, 3.7rem)/1.05 var(--serif); letter-spacing: -.035em; }
     .body-lg { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.65; }
     .label { font: 500 .67rem/1.4 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
     .link-arrow { display: inline-flex; align-items: center; gap: .75rem; padding-bottom: .25rem; border-bottom: 1px solid currentColor; text-decoration: none; font: 500 .7rem/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
     .link-arrow::after { content: "↗"; font-size: .9rem; }
+    .link-arrow:hover { color: var(--rust); }
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
     /* NAV_HERO */
     .site-header { position: fixed; z-index: 20; inset: 0 0 auto; height: 76px; color: white; transition: background .25s ease, color .25s ease, box-shadow .25s ease; }
-    .site-header.scrolled { color: var(--ink); background: rgba(251,250,247,.94); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(23,32,30,.12); }
+    .site-header.scrolled { color: white; background: rgba(11,11,9,.94); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(255,90,31,.35); }
     .nav-wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; }
     .brand { display: flex; align-items: center; gap: .85rem; color: inherit; text-decoration: none; }
-    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid currentColor; font: 500 .65rem var(--mono); }
+    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--rust); color: var(--rust); font: 500 .65rem var(--mono); transform: rotate(-3deg); }
     .brand-name { font: 600 1.1rem var(--sans); letter-spacing: -.02em; }
     .main-nav { display: flex; align-items: center; gap: clamp(1.2rem, 2.5vw, 2.6rem); }
     .main-nav a { color: inherit; text-decoration: none; font: 500 .67rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .main-nav a:not(.nav-button) { padding: .6rem 0; }
     .main-nav a:not(.nav-button):hover { color: var(--rust); }
-    .nav-button { padding: .8rem 1.05rem; border: 1px solid currentColor; transition: .2s; }
-    .nav-button:hover { background: white; border-color: white; color: var(--forest); }
-    .site-header.scrolled .nav-button:hover { background: var(--forest); border-color: var(--forest); color: white; }
+    .nav-button { padding: .8rem 1.05rem; border: 1px solid var(--rust); color: white !important; transition: .2s; }
+    .nav-button:hover, .site-header.scrolled .nav-button:hover { background: var(--rust); border-color: var(--rust); color: var(--ink) !important; }
     .menu-button { display: none; border: 0; background: none; color: inherit; padding: .5rem 0; font: 500 .7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 
-    .hero { min-height: 780px; height: 100svh; max-height: 980px; position: relative; display: grid; grid-template-columns: 55% 45%; background: var(--forest); color: white; overflow: hidden; }
+    .hero { min-height: 780px; height: 100svh; max-height: 980px; position: relative; display: grid; grid-template-columns: 54% 46%; background: var(--forest); color: white; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; z-index: 4; left: 54%; top: 0; bottom: 0; width: 4px; background: var(--rust); pointer-events: none; }
     .hero-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: 9rem var(--gutter) clamp(3rem, 7vh, 5.5rem); }
     .hero-copy-inner { max-width: 700px; }
-    .hero .kicker { color: #dca082; }
+    .hero .kicker { color: var(--rust); }
     .hero h1 { margin: 0; font: 500 clamp(3.6rem, 6.7vw, 7rem)/.94 var(--serif); letter-spacing: -.055em; }
-    .hero h1 span { color: var(--sage); }
+    .hero h1 span { color: var(--rust); }
     .hero-intro { max-width: 590px; margin: 2rem 0 0; color: rgba(255,255,255,.72); font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.65; }
     .hero-actions { display: flex; gap: 1.4rem; align-items: center; margin-top: 2.3rem; }
-    .primary-action { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; min-height: 50px; padding: 0 1.3rem; background: var(--rust); color: white; text-decoration: none; font: 500 .69rem var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: .2s; }
-    .primary-action:hover { background: #df7048; }
+    .primary-action { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; min-height: 50px; padding: 0 1.3rem; background: var(--rust); color: var(--ink); text-decoration: none; font: 500 .69rem var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: .2s; }
+    .primary-action:hover { background: white; transform: translateY(-2px); }
     .text-action { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.55); padding-bottom: .3rem; font: .69rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .hero-media { position: relative; min-width: 0; }
     .hero-media img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
-    .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16,44,39,.2), transparent 35%), linear-gradient(0deg, rgba(16,44,39,.42), transparent 40%); }
+    .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,11,9,.18), transparent 35%), linear-gradient(0deg, rgba(11,11,9,.68), transparent 52%); }
     .hero-caption { position: absolute; z-index: 2; left: 2rem; right: 2rem; bottom: 2rem; display: flex; justify-content: space-between; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.5); font: .62rem/1.5 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
     .hero-index { position: absolute; z-index: 2; top: 7rem; right: 2rem; color: white; font: .65rem var(--mono); writing-mode: vertical-rl; letter-spacing: .15em; text-transform: uppercase; }
-    .trust-bar { background: var(--stone); border-bottom: 1px solid var(--line); }
+    .trust-bar { background: var(--rust); color: var(--ink); border-bottom: 1px solid var(--ink); }
     .trust-grid { display: grid; grid-template-columns: 1.1fr repeat(3, 1fr); }
-    .trust-item { min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 1.25rem 2rem; border-right: 1px solid var(--line); }
+    .trust-item { min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 1.25rem 2rem; border-right: 1px solid rgba(17,17,14,.35); }
     .trust-item:first-child { padding-left: 0; }
     .trust-item:last-child { border: 0; }
     .trust-item strong { font: 500 1.3rem var(--serif); }
-    .trust-item span { margin-top: .35rem; color: var(--muted); font: .62rem/1.4 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .trust-item span { margin-top: .35rem; color: rgba(17,17,14,.7); font: .62rem/1.4 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
     /* CONTENT */
     .profile { background: var(--white); }
     .profile-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(3rem, 9vw, 9rem); align-items: start; }
@@ -104,11 +105,14 @@
     .operations { background: var(--stone); }
     .section-head { display: flex; justify-content: space-between; align-items: end; gap: 3rem; margin-bottom: clamp(3.5rem, 7vw, 6rem); }
     .section-head > p { max-width: 440px; margin: 0; color: var(--muted); line-height: 1.7; }
-    .facility { display: grid; grid-template-columns: 1.05fr .95fr; min-height: 560px; border-top: 1px solid var(--ink); }
+    .facility { display: grid; grid-template-columns: 1.05fr .95fr; min-height: 560px; border-top: 1px solid var(--ink); transition: transform .35s ease, box-shadow .35s ease; }
+    .facility:hover { position: relative; z-index: 2; transform: translateY(-6px); box-shadow: 0 24px 60px rgba(17,17,14,.16); }
     .facility:last-child { border-bottom: 1px solid var(--ink); }
     .facility:nth-child(even) { grid-template-columns: .95fr 1.05fr; }
     .facility:nth-child(even) .facility-media { order: 2; }
     .facility-media { position: relative; overflow: hidden; background: #b7bbb3; }
+    .facility-media::after { content: "VIEW FACILITY"; position: absolute; left: 1rem; bottom: 1rem; padding: .65rem .8rem; background: var(--rust); color: var(--ink); font: 500 .58rem var(--mono); letter-spacing: .1em; transform: translateY(140%); transition: transform .35s ease; }
+    .facility:hover .facility-media::after { transform: none; }
     .facility-media img { height: 100%; min-height: 560px; object-fit: cover; transition: transform .7s ease; }
     .facility:hover .facility-media img { transform: scale(1.025); }
     .facility-content { display: flex; flex-direction: column; padding: clamp(2rem, 5vw, 5rem); background: var(--white); }
@@ -120,7 +124,8 @@
     .facility-meta dd { margin: 0; font-size: .84rem; line-height: 1.45; }
 
     /* CAPABILITIES */
-    .capabilities { background: var(--forest); color: white; }
+    .capabilities { position: relative; background: var(--forest); color: white; overflow: hidden; }
+    .capabilities::before { content: "UL"; position: absolute; right: -2vw; top: -4vw; color: rgba(255,90,31,.06); font: 600 min(38vw, 520px)/1 var(--sans); letter-spacing: -.12em; pointer-events: none; }
     .capabilities .section-head > p { color: rgba(255,255,255,.58); }
     .cap-list { border-top: 1px solid rgba(255,255,255,.24); }
     .cap-row { display: grid; grid-template-columns: 100px 1fr 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid rgba(255,255,255,.24); }
@@ -134,21 +139,42 @@
     .route-stage strong { display: block; margin-top: .7rem; font: 500 1.3rem var(--serif); }
     .direction { background: var(--white); }
     .direction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin-top: 4rem; border: 1px solid var(--line); }
-    .direction-item { background: var(--white); padding: clamp(2rem, 5vw, 4.5rem); }
+    .direction-item { position: relative; background: var(--white); padding: clamp(2rem, 5vw, 4.5rem); overflow: hidden; }
+    .direction-item::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--rust); transform: scaleY(0); transform-origin: bottom; transition: transform .35s ease; }
+    .direction-item:hover::before { transform: scaleY(1); }
     .direction-item h3 { margin: 0 0 1.5rem; font: 500 clamp(2.2rem, 3.8vw, 3.8rem) var(--serif); }
     .direction-item p { max-width: 550px; margin: 0; color: var(--muted); line-height: 1.75; }
     .approval-note { margin-top: 1.2rem; color: #80604d; font: .6rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
 
-    .species { background: #e8e2d7; }
+    .species { position: relative; background: var(--forest); color: white; overflow: hidden; }
+    .species::before { content: "SPECIES / 12"; position: absolute; right: -2.2rem; top: 12rem; color: rgba(255,255,255,.11); font: .62rem var(--mono); letter-spacing: .2em; writing-mode: vertical-rl; }
     .species-head { display: grid; grid-template-columns: 1.05fr .95fr; gap: 4rem; align-items: end; }
-    .species-head p { margin: 0; max-width: 580px; color: var(--muted); line-height: 1.75; }
-    .species-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; margin-top: 4.5rem; border-top: 1px solid var(--ink); }
-    .species-row { display: grid; grid-template-columns: 38px 1fr auto; gap: 1rem; align-items: center; min-height: 110px; border-bottom: 1px solid rgba(23,32,30,.45); }
-    .species-no { align-self: start; padding-top: 1.35rem; color: var(--muted); font: .58rem var(--mono); }
-    .species-name strong { display: block; font: 500 clamp(1.35rem, 2vw, 1.8rem)/1.1 var(--serif); }
-    .species-name em { display: block; margin-top: .35rem; color: var(--muted); font-size: .78rem; line-height: 1.4; }
-    .species-class { max-width: 92px; text-align: right; color: var(--muted); font: .56rem/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
-    .species-source { margin-top: 1.5rem; color: var(--muted); font: .58rem/1.65 var(--mono); }
+    .species-head p { margin: 0; max-width: 580px; color: rgba(255,255,255,.58); line-height: 1.75; }
+    .species-selector { display: grid; grid-template-columns: minmax(330px,.82fr) minmax(0,1.18fr); gap: clamp(2rem,5vw,5.5rem); margin-top: 4.5rem; align-items: start; }
+    .species-list { max-height: 660px; overflow: auto; border-top: 1px solid rgba(255,255,255,.3); scrollbar-width: thin; scrollbar-color: var(--rust) var(--forest-2); }
+    .species-option { width: 100%; display: grid; grid-template-columns: 38px 1fr auto; gap: 1rem; align-items: center; min-height: 82px; padding: .7rem 0; color: white; background: none; border: 0; border-bottom: 1px solid rgba(255,255,255,.22); text-align: left; cursor: pointer; transition: color .2s, padding .25s, background .2s; }
+    .species-option:hover { padding-left: .8rem; color: var(--rust); }
+    .species-option.active { padding-left: .8rem; color: var(--ink); background: var(--rust); }
+    .species-option .species-no { color: inherit; opacity: .55; font: .58rem var(--mono); }
+    .species-option strong { display: block; font: 500 clamp(1.05rem,1.65vw,1.35rem)/1.12 var(--serif); }
+    .species-option em { display: block; margin-top: .25rem; color: inherit; opacity: .58; font-size: .7rem; line-height: 1.4; }
+    .species-option .species-arrow { padding-right: 1rem; font: 1rem var(--mono); opacity: .4; }
+    .species-option.active .species-arrow { opacity: 1; transform: translateX(3px); }
+    .species-display { position: sticky; top: 108px; min-height: 660px; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(1.5rem,4vw,3.5rem); background: #25231f; overflow: hidden; }
+    .species-display::before { content: ""; position: absolute; z-index: -2; inset: 0; background: url('assets/gold-rank-logs.webp') center/cover; filter: grayscale(1) contrast(1.08); transform: scale(1.02); transition: transform .8s ease; }
+    .species-display::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,rgba(11,11,9,.18),rgba(11,11,9,.97) 78%), linear-gradient(90deg,rgba(255,90,31,.15),transparent); }
+    .species-display.is-changing::before { transform: scale(1.06); }
+    .species-display-top { position: absolute; inset: 1.5rem 1.5rem auto; display: flex; justify-content: space-between; align-items: center; }
+    .species-counter { display: grid; place-items: center; width: 54px; height: 54px; background: var(--rust); color: var(--ink); font: 500 .7rem var(--mono); }
+    .species-display-tag { color: rgba(255,255,255,.7); font: .58rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .species-display h3 { margin: 0; color: white; font: 500 clamp(3.1rem,6vw,6.8rem)/.88 var(--serif); letter-spacing: -.055em; transition: opacity .18s, transform .18s; }
+    .species-latin { margin: 1rem 0 0; color: var(--rust); font: italic 500 clamp(1rem,1.5vw,1.35rem) var(--serif); transition: opacity .18s, transform .18s; }
+    .species-data { display: grid; grid-template-columns: .72fr 1.28fr; gap: 1.5rem; margin-top: 2rem; padding-top: 1.3rem; border-top: 1px solid rgba(255,255,255,.35); }
+    .species-stat span { display: block; color: rgba(255,255,255,.45); font: .56rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .species-stat strong { display: block; margin-top: .5rem; font-weight: 500; line-height: 1.45; }
+    .species-note { margin: 1.5rem 0 0; color: rgba(255,255,255,.63); font-size: .82rem; line-height: 1.65; }
+    .species-display.is-changing h3, .species-display.is-changing .species-latin { opacity: .25; transform: translateY(5px); }
+    .species-source { margin-top: 1.5rem; color: rgba(255,255,255,.42); font: .58rem/1.65 var(--mono); }
 
     .company-gallery { background: var(--white); }
     .gallery-grid { display: grid; grid-template-columns: 1.25fr .75fr .75fr; grid-template-rows: 300px 300px; gap: 1rem; margin-top: 4rem; }
@@ -157,9 +183,11 @@
     .gallery-item:last-child { grid-column: 2 / 4; }
     .gallery-item img { height: 100%; object-fit: cover; transition: transform .7s ease; }
     .gallery-item:hover img { transform: scale(1.025); }
-    .gallery-item figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem 1rem 1rem; color: white; background: linear-gradient(0deg, rgba(8,20,17,.78), transparent); font: .58rem/1.45 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+    .gallery-item figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem 1rem 1rem; color: white; background: linear-gradient(0deg, rgba(11,11,9,.86), transparent); font: .58rem/1.45 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+    .gallery-item::after { content: "+"; position: absolute; right: 1rem; top: 1rem; width: 30px; height: 30px; display: grid; place-items: center; background: var(--rust); color: var(--ink); font: 1rem var(--mono); opacity: 0; transform: rotate(-45deg); transition: .3s; }
+    .gallery-item:hover::after { opacity: 1; transform: rotate(0); }
     /* COMPLIANCE */
-    .compliance { background: #e4e7df; }
+    .compliance { background: #ddd4c5; }
     .compliance-lead { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
     .compliance-lead > p { margin: 0; color: var(--muted); line-height: 1.7; }
     .records { margin-top: 4rem; border-top: 1px solid var(--ink); }
@@ -176,7 +204,7 @@
     .map-shell { display: grid; grid-template-columns: 350px 1fr; min-height: 620px; margin-top: 4rem; border: 1px solid var(--line); }
     .map-menu { background: var(--forest); color: white; padding: .75rem; }
     .map-option { width: 100%; display: block; padding: 1.45rem 1.2rem; color: white; background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,.17); text-align: left; cursor: pointer; transition: .2s; }
-    .map-option:hover, .map-option.active { color: var(--ink); background: var(--white); }
+    .map-option:hover, .map-option.active { color: var(--ink); background: var(--rust); }
     .map-option span { display: block; margin-bottom: .5rem; font: .58rem var(--mono); letter-spacing: .08em; text-transform: uppercase; opacity: .65; }
     .map-option strong { font: 500 1.3rem var(--serif); }
     .map-option small { display: block; margin-top: .45rem; line-height: 1.4; opacity: .7; }
@@ -189,25 +217,25 @@
     .map-caption a { display: inline-block; margin-top: .75rem; color: var(--rust); font: .58rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 
     /* CONTACT_FOOTER */
-    .contact { background: var(--rust); color: white; }
+    .contact { background: var(--rust); color: var(--ink); }
     .contact-grid { display: grid; grid-template-columns: 1fr .9fr; gap: clamp(3rem, 9vw, 9rem); }
-    .contact .kicker { color: #f3d2c5; }
-    .contact-copy > p { max-width: 540px; color: rgba(255,255,255,.75); line-height: 1.7; }
-    .contact-lines { margin-top: 3rem; border-top: 1px solid rgba(255,255,255,.45); }
-    .contact-line { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.45); }
+    .contact .kicker { color: var(--ink); }
+    .contact-copy > p { max-width: 540px; color: rgba(17,17,14,.7); line-height: 1.7; }
+    .contact-lines { margin-top: 3rem; border-top: 1px solid rgba(17,17,14,.45); }
+    .contact-line { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(17,17,14,.45); }
     .contact-line span { font: .59rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
     .contact-line strong { font-weight: 500; }
     .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-content: start; }
     .field.full { grid-column: 1 / -1; }
     .field label { display: block; margin-bottom: .5rem; font: .6rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
-    .field input, .field textarea { width: 100%; padding: 1rem 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.55); border-radius: 0; background: transparent; color: white; outline: 0; }
-    .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.55); }
-    .field input:focus, .field textarea:focus { border-color: white; }
+    .field input, .field textarea { width: 100%; padding: 1rem 0; border: 0; border-bottom: 1px solid rgba(17,17,14,.5); border-radius: 0; background: transparent; color: var(--ink); outline: 0; }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(17,17,14,.5); }
+    .field input:focus, .field textarea:focus { border-color: var(--ink); }
     .field textarea { min-height: 120px; resize: vertical; }
     .submit { grid-column: 1/-1; min-height: 52px; margin-top: .5rem; border: 0; background: var(--forest); color: white; cursor: pointer; font: 500 .68rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-    .form-note { grid-column: 1/-1; margin: 0; color: rgba(255,255,255,.65); font: .57rem/1.55 var(--mono); }
-    .form-status { display: none; grid-column: 1/-1; padding: .85rem; background: rgba(16,44,39,.18); font-size: .82rem; }
-    footer { background: #0a1f1b; color: rgba(255,255,255,.67); padding: 3rem 0; }
+    .form-note { grid-column: 1/-1; margin: 0; color: rgba(17,17,14,.65); font: .57rem/1.55 var(--mono); }
+    .form-status { display: none; grid-column: 1/-1; padding: .85rem; background: rgba(17,17,14,.12); font-size: .82rem; }
+    footer { background: #080806; color: rgba(255,255,255,.67); padding: 3rem 0; }
     .footer-main { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 3rem; }
     .footer-brand { color: white; font: 500 1.8rem var(--serif); }
     .footer-col strong { display: block; margin-bottom: .8rem; color: white; font: .6rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
@@ -218,10 +246,13 @@
     /* RESPONSIVE */
     @media (max-width: 950px) {
       .hero { grid-template-columns: 1fr 42%; }
+      .hero::before { left: 58%; }
       .trust-grid { grid-template-columns: 1fr 1fr; }
       .trust-item { border-bottom: 1px solid var(--line); }
       .profile-grid, .contact-grid { grid-template-columns: 1fr; }
       .species-head { grid-template-columns: 1fr; }
+      .species-selector { grid-template-columns: minmax(280px,.85fr) 1.15fr; gap: 2rem; }
+      .species-display { min-height: 610px; }
       .profile-lead { max-width: 700px; }
       .facility, .facility:nth-child(even) { grid-template-columns: 1fr 1fr; }
       .cap-row { grid-template-columns: 70px 1fr; }
@@ -238,6 +269,7 @@
       .main-nav a { font-size: .9rem; }
       .menu-button { display: block; }
       .hero { display: block; min-height: 850px; height: 100svh; max-height: none; }
+      .hero::before { display: none; }
       .hero-media { position: absolute; inset: 0 0 auto; height: 46%; }
       .hero-media::after { background: linear-gradient(0deg, var(--forest), transparent 70%); }
       .hero-copy { position: relative; z-index: 3; min-height: 100%; justify-content: flex-end; padding-top: 48vh; }
@@ -256,7 +288,10 @@
       .facility-content { min-height: 470px; }
       .route-line { grid-template-columns: 1fr 1fr; gap: 2rem 0; }
       .direction-grid { grid-template-columns: 1fr; }
-      .species-grid { grid-template-columns: 1fr; gap: 0; }
+      .species-selector { display: flex; flex-direction: column-reverse; }
+      .species-list { width: 100%; max-height: 500px; }
+      .species-display { position: relative; top: auto; width: 100%; min-height: 560px; }
+      .species-data { grid-template-columns: 1fr; gap: 1rem; }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 380px 240px 240px; }
       .gallery-item:first-child { grid-column: 1/-1; grid-row: auto; }
       .gallery-item:last-child { grid-column: 1/-1; }
@@ -382,19 +417,28 @@
           <div><p class="kicker">Documented timber range</p><h2 class="heading">Local names.<br>Botanical clarity.</h2></div>
           <p>These names are recorded in Irama Ramai’s August 2025 Sabah TLAS assessment scope. Availability depends on current lawful supply, grade, dimensions and order confirmation. A genus followed by “spp.” represents several species, not one exact species.</p>
         </div>
-        <div class="species-grid reveal">
-          <article class="species-row"><span class="species-no">01</span><div class="species-name"><strong>Red Seraya</strong><em>Shorea spp. · Light Red Meranti group</em></div><span class="species-class">Light hardwood<br>385–755 kg/m³</span></article>
-          <article class="species-row"><span class="species-no">02</span><div class="species-name"><strong>Yellow Seraya</strong><em>Shorea spp. · Yellow Meranti group</em></div><span class="species-class">Light hardwood<br>575–735 kg/m³</span></article>
-          <article class="species-row"><span class="species-no">03</span><div class="species-name"><strong>Selangan Batu</strong><em>Shorea inappendiculata</em></div><span class="species-class">Heavy hardwood<br>species record</span></article>
-          <article class="species-row"><span class="species-no">04</span><div class="species-name"><strong>Keruing</strong><em>Dipterocarpus spp.</em></div><span class="species-class">Medium hardwood<br>595–865 kg/m³*</span></article>
-          <article class="species-row"><span class="species-no">05</span><div class="species-name"><strong>Kapur</strong><em>Dryobalanops spp.</em></div><span class="species-class">Medium hardwood<br>580–820 kg/m³</span></article>
-          <article class="species-row"><span class="species-no">06</span><div class="species-name"><strong>Oba Suluk</strong><em>Shorea pauciflora · Dark Red Meranti</em></div><span class="species-class">Light hardwood<br>species record</span></article>
-          <article class="species-row"><span class="species-no">07</span><div class="species-name"><strong>Mempening</strong><em>Lithocarpus spp. · Sabah oak</em></div><span class="species-class">Medium hardwood<br>575–1,010 kg/m³</span></article>
-          <article class="species-row"><span class="species-no">08</span><div class="species-name"><strong>Keranji</strong><em>Dialium spp.</em></div><span class="species-class">Heavy hardwood<br>755–1,250 kg/m³</span></article>
-          <article class="species-row"><span class="species-no">09</span><div class="species-name"><strong>Kedondong</strong><em>Spondias dulcis · assessment entry</em></div><span class="species-class">Species entry<br>confirm order</span></article>
-          <article class="species-row"><span class="species-no">10</span><div class="species-name"><strong>Gagil</strong><em>Hopea sangal · Merawan group</em></div><span class="species-class">Medium hardwood<br>group properties</span></article>
-          <article class="species-row"><span class="species-no">11</span><div class="species-name"><strong>Kempas</strong><em>Koompassia malaccensis</em></div><span class="species-class">Medium hardwood<br>770–1,120 kg/m³</span></article>
-          <article class="species-row"><span class="species-no">12</span><div class="species-name"><strong>Resak Batu</strong><em>Cotylelobium melanoxylon · Resak group</em></div><span class="species-class">Heavy hardwood<br>group properties</span></article>
+        <div class="species-selector reveal">
+          <div class="species-list" role="tablist" aria-label="Documented timber species">
+            <button class="species-option active" role="tab" aria-selected="true" data-index="01" data-name="Red Seraya" data-latin="Shorea spp. · Light Red Meranti group" data-class="Light hardwood" data-density="385–755 kg/m³" data-note="A commercial group covering several Shorea species. Confirm the exact botanical species, grade and dimensions when ordering."><span class="species-no">01</span><span><strong>Red Seraya</strong><em>Shorea spp.</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="02" data-name="Yellow Seraya" data-latin="Shorea spp. · Yellow Meranti group" data-class="Light hardwood" data-density="575–735 kg/m³" data-note="Recorded as a genus-level commercial group in the assessment. Availability varies by lawful supply and required specification."><span class="species-no">02</span><span><strong>Yellow Seraya</strong><em>Shorea spp.</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="03" data-name="Selangan Batu" data-latin="Shorea inappendiculata" data-class="Heavy hardwood" data-density="Species record" data-note="Listed as a specific species in the 2025 assessment. Technical properties should be confirmed against the supplied species and grading record."><span class="species-no">03</span><span><strong>Selangan Batu</strong><em>Shorea inappendiculata</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="04" data-name="Keruing" data-latin="Dipterocarpus spp." data-class="Medium hardwood" data-density="595–865 kg/m³*" data-note="A genus-level timber group. The density range shown is the Malaysian Timber Council reference for Sabah Keruing species."><span class="species-no">04</span><span><strong>Keruing</strong><em>Dipterocarpus spp.</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="05" data-name="Kapur" data-latin="Dryobalanops spp." data-class="Medium hardwood" data-density="580–820 kg/m³" data-note="A commercial group of Dryobalanops species documented within the assessment scope. Confirm species and current stock before specification."><span class="species-no">05</span><span><strong>Kapur</strong><em>Dryobalanops spp.</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="06" data-name="Oba Suluk" data-latin="Shorea pauciflora · Dark Red Meranti" data-class="Light hardwood" data-density="Species record" data-note="The assessment uses Shorea pauciflora; current taxonomic databases may place this species under Rubroshorea pauciflora."><span class="species-no">06</span><span><strong>Oba Suluk</strong><em>Shorea pauciflora</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="07" data-name="Mempening" data-latin="Lithocarpus spp. · Sabah oak" data-class="Medium hardwood" data-density="575–1,010 kg/m³" data-note="A genus-level group with a broad density range. Exact species identification matters when matching technical requirements."><span class="species-no">07</span><span><strong>Mempening</strong><em>Lithocarpus spp.</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="08" data-name="Keranji" data-latin="Dialium spp." data-class="Heavy hardwood" data-density="755–1,250 kg/m³" data-note="A dense commercial group of Dialium species. Confirm the supplied species, moisture condition and grade for project use."><span class="species-no">08</span><span><strong>Keranji</strong><em>Dialium spp.</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="09" data-name="Kedondong" data-latin="Spondias dulcis · assessment entry" data-class="Species entry" data-density="Confirm with order" data-note="Reproduced exactly from the 2025 assessment entry. Botanical identity and technical specification must be confirmed for each order."><span class="species-no">09</span><span><strong>Kedondong</strong><em>Spondias dulcis</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="10" data-name="Gagil" data-latin="Hopea sangal · Merawan group" data-class="Medium hardwood" data-density="Group properties" data-note="Listed as Hopea sangal and associated with the Merawan group. Use order documentation for the precise supplied material."><span class="species-no">10</span><span><strong>Gagil</strong><em>Hopea sangal</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="11" data-name="Kempas" data-latin="Koompassia malaccensis" data-class="Medium hardwood" data-density="770–1,120 kg/m³" data-note="A specific species entry with a comparatively high published density range. Product availability remains subject to lawful current supply."><span class="species-no">11</span><span><strong>Kempas</strong><em>Koompassia malaccensis</em></span><span class="species-arrow">→</span></button>
+            <button class="species-option" role="tab" aria-selected="false" data-index="12" data-name="Resak Batu" data-latin="Cotylelobium melanoxylon · Resak group" data-class="Heavy hardwood" data-density="Group properties" data-note="Documented as Cotylelobium melanoxylon within the Resak commercial group. Confirm the required technical characteristics at enquiry."><span class="species-no">12</span><span><strong>Resak Batu</strong><em>Cotylelobium melanoxylon</em></span><span class="species-arrow">→</span></button>
+          </div>
+          <article class="species-display" id="speciesDisplay" aria-live="polite">
+            <div class="species-display-top"><span class="species-counter" id="speciesCounter">01</span><span class="species-display-tag">Timber file / documented range</span></div>
+            <h3 id="speciesName">Red Seraya</h3>
+            <p class="species-latin" id="speciesLatin">Shorea spp. · Light Red Meranti group</p>
+            <div class="species-data"><div class="species-stat"><span>Timber class</span><strong id="speciesClass">Light hardwood</strong></div><div class="species-stat"><span>Air-dry density / record</span><strong id="speciesDensity">385–755 kg/m³</strong></div></div>
+            <p class="species-note" id="speciesNote">A commercial group covering several Shorea species. Confirm the exact botanical species, grade and dimensions when ordering.</p>
+          </article>
         </div>
         <p class="species-source">Sources: Irama Ramai Sabah TLAS assessment (13 August 2025); Malaysian Timber Council timber-species reference. *Keruing density shown for Sabah species. Scientific names follow the assessment nomenclature; current taxonomic databases may place Shorea pauciflora under Rubroshorea pauciflora. Confirm species, origin documentation, grade and availability for every order.</p>
       </div>
@@ -505,6 +549,36 @@
       if (entry.isIntersecting) entry.target.classList.add('in');
     }), { threshold: .12 });
     document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+
+    const speciesDisplay = document.getElementById('speciesDisplay');
+    const speciesOptions = [...document.querySelectorAll('.species-option')];
+    const selectSpecies = button => {
+      speciesOptions.forEach(option => {
+        const selected = option === button;
+        option.classList.toggle('active', selected);
+        option.setAttribute('aria-selected', String(selected));
+      });
+      speciesDisplay.classList.add('is-changing');
+      window.setTimeout(() => {
+        document.getElementById('speciesCounter').textContent = button.dataset.index;
+        document.getElementById('speciesName').textContent = button.dataset.name;
+        document.getElementById('speciesLatin').textContent = button.dataset.latin;
+        document.getElementById('speciesClass').textContent = button.dataset.class;
+        document.getElementById('speciesDensity').textContent = button.dataset.density;
+        document.getElementById('speciesNote').textContent = button.dataset.note;
+        speciesDisplay.classList.remove('is-changing');
+      }, 140);
+    };
+    speciesOptions.forEach((button, index) => {
+      button.addEventListener('click', () => selectSpecies(button));
+      button.addEventListener('keydown', event => {
+        if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? speciesOptions.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + speciesOptions.length) % speciesOptions.length;
+        speciesOptions[nextIndex].focus();
+        selectSpecies(speciesOptions[nextIndex]);
+      });
+    });
 
     const frame = document.getElementById('mapFrame');
     document.querySelectorAll('.map-option').forEach(button => button.addEventListener('click', () => {
