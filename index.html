@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Uni-Lumber Sdn. Bhd. — Sabah-sourced sawn timber, with owned sawmill operations in Keningau and Tawau.">
+  <title>Uni-Lumber Sdn. Bhd. | Sabah Timber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    /* TOKENS_BASE */
+    :root {
+      --forest: #102c27;
+      --forest-2: #1c423a;
+      --stone: #f2efe8;
+      --white: #fbfaf7;
+      --ink: #17201e;
+      --muted: #61706b;
+      --rust: #c95f38;
+      --sage: #a8b8ac;
+      --line: #d4d5ce;
+      --sans: "IBM Plex Sans", sans-serif;
+      --serif: "Source Serif 4", Georgia, serif;
+      --mono: "IBM Plex Mono", monospace;
+      --gutter: clamp(1.25rem, 4vw, 4.5rem);
+      --max: 1440px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--white); color: var(--ink); font-family: var(--sans); font-size: 16px; overflow-x: hidden; }
+    body.menu-open { overflow: hidden; }
+    img { width: 100%; display: block; }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+    ::selection { background: var(--rust); color: white; }
+    .container { width: min(100%, var(--max)); margin: auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+    .section { padding-top: clamp(5.5rem, 10vw, 9rem); padding-bottom: clamp(5.5rem, 10vw, 9rem); }
+    .kicker { margin: 0 0 1.25rem; color: var(--rust); font: 500 .7rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .heading { margin: 0; font: 500 clamp(2.8rem, 5.8vw, 5.6rem)/.98 var(--serif); letter-spacing: -.045em; }
+    .heading-sm { margin: 0; font: 500 clamp(2.1rem, 3.6vw, 3.7rem)/1.05 var(--serif); letter-spacing: -.035em; }
+    .body-lg { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.65; }
+    .label { font: 500 .67rem/1.4 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .link-arrow { display: inline-flex; align-items: center; gap: .75rem; padding-bottom: .25rem; border-bottom: 1px solid currentColor; text-decoration: none; font: 500 .7rem/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .link-arrow::after { content: "↗"; font-size: .9rem; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* NAV_HERO */
+    .site-header { position: fixed; z-index: 20; inset: 0 0 auto; height: 76px; color: white; transition: background .25s ease, color .25s ease, box-shadow .25s ease; }
+    .site-header.scrolled { color: var(--ink); background: rgba(251,250,247,.94); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(23,32,30,.12); }
+    .nav-wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: .85rem; color: inherit; text-decoration: none; }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid currentColor; font: 500 .65rem var(--mono); }
+    .brand-name { font: 600 1.1rem var(--sans); letter-spacing: -.02em; }
+    .main-nav { display: flex; align-items: center; gap: clamp(1.2rem, 2.5vw, 2.6rem); }
+    .main-nav a { color: inherit; text-decoration: none; font: 500 .67rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .main-nav a:not(.nav-button) { padding: .6rem 0; }
+    .main-nav a:not(.nav-button):hover { color: var(--rust); }
+    .nav-button { padding: .8rem 1.05rem; border: 1px solid currentColor; transition: .2s; }
+    .nav-button:hover { background: white; border-color: white; color: var(--forest); }
+    .site-header.scrolled .nav-button:hover { background: var(--forest); border-color: var(--forest); color: white; }
+    .menu-button { display: none; border: 0; background: none; color: inherit; padding: .5rem 0; font: 500 .7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+
+    .hero { min-height: 780px; height: 100svh; max-height: 980px; position: relative; display: grid; grid-template-columns: 55% 45%; background: var(--forest); color: white; overflow: hidden; }
+    .hero-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: 9rem var(--gutter) clamp(3rem, 7vh, 5.5rem); }
+    .hero-copy-inner { max-width: 700px; }
+    .hero .kicker { color: #dca082; }
+    .hero h1 { margin: 0; font: 500 clamp(3.6rem, 6.7vw, 7rem)/.94 var(--serif); letter-spacing: -.055em; }
+    .hero h1 span { color: var(--sage); }
+    .hero-intro { max-width: 590px; margin: 2rem 0 0; color: rgba(255,255,255,.72); font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.65; }
+    .hero-actions { display: flex; gap: 1.4rem; align-items: center; margin-top: 2.3rem; }
+    .primary-action { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; min-height: 50px; padding: 0 1.3rem; background: var(--rust); color: white; text-decoration: none; font: 500 .69rem var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: .2s; }
+    .primary-action:hover { background: #df7048; }
+    .text-action { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.55); padding-bottom: .3rem; font: .69rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .hero-media { position: relative; min-width: 0; }
+    .hero-media img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+    .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16,44,39,.2), transparent 35%), linear-gradient(0deg, rgba(16,44,39,.42), transparent 40%); }
+    .hero-caption { position: absolute; z-index: 2; left: 2rem; right: 2rem; bottom: 2rem; display: flex; justify-content: space-between; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.5); font: .62rem/1.5 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .hero-index { position: absolute; z-index: 2; top: 7rem; right: 2rem; color: white; font: .65rem var(--mono); writing-mode: vertical-rl; letter-spacing: .15em; text-transform: uppercase; }
+    .trust-bar { background: var(--stone); border-bottom: 1px solid var(--line); }
+    .trust-grid { display: grid; grid-template-columns: 1.1fr repeat(3, 1fr); }
+    .trust-item { min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 1.25rem 2rem; border-right: 1px solid var(--line); }
+    .trust-item:first-child { padding-left: 0; }
+    .trust-item:last-child { border: 0; }
+    .trust-item strong { font: 500 1.3rem var(--serif); }
+    .trust-item span { margin-top: .35rem; color: var(--muted); font: .62rem/1.4 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    /* CONTENT */
+    .profile { background: var(--white); }
+    .profile-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(3rem, 9vw, 9rem); align-items: start; }
+    .profile-lead { max-width: 510px; }
+    .profile-copy { padding-top: .3rem; }
+    .profile-copy .body-lg { margin: 0 0 1.5rem; color: #33413d; }
+    .profile-copy > p:not(.body-lg) { color: var(--muted); line-height: 1.75; }
+    .fact-list { margin: 3rem 0 0; border-top: 1px solid var(--line); }
+    .fact-row { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; padding: 1.2rem 0; border-bottom: 1px solid var(--line); }
+    .fact-row dt { color: var(--muted); font: .63rem/1.55 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .fact-row dd { margin: 0; font-size: .93rem; line-height: 1.55; }
+    .story-image { margin-top: 6rem; height: min(50vw, 660px); position: relative; overflow: hidden; }
+    .story-image img { height: 100%; object-fit: cover; }
+    .image-note { position: absolute; right: 0; bottom: 0; max-width: 340px; padding: 1.1rem 1.3rem; background: var(--white); color: var(--muted); font: .62rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .05em; }
+
+    /* OPERATIONS */
+    .operations { background: var(--stone); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 3rem; margin-bottom: clamp(3.5rem, 7vw, 6rem); }
+    .section-head > p { max-width: 440px; margin: 0; color: var(--muted); line-height: 1.7; }
+    .facility { display: grid; grid-template-columns: 1.05fr .95fr; min-height: 560px; border-top: 1px solid var(--ink); }
+    .facility:last-child { border-bottom: 1px solid var(--ink); }
+    .facility:nth-child(even) { grid-template-columns: .95fr 1.05fr; }
+    .facility:nth-child(even) .facility-media { order: 2; }
+    .facility-media { position: relative; overflow: hidden; background: #b7bbb3; }
+    .facility-media img { height: 100%; min-height: 560px; object-fit: cover; transition: transform .7s ease; }
+    .facility:hover .facility-media img { transform: scale(1.025); }
+    .facility-content { display: flex; flex-direction: column; padding: clamp(2rem, 5vw, 5rem); background: var(--white); }
+    .facility-number { display: flex; justify-content: space-between; color: var(--muted); }
+    .facility-content h3 { margin: auto 0 1.5rem; font: 500 clamp(2.7rem, 4.5vw, 4.8rem)/.98 var(--serif); letter-spacing: -.045em; }
+    .facility-content > p { margin: 0 0 2rem; color: var(--muted); line-height: 1.7; }
+    .facility-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0; padding-top: 1.3rem; border-top: 1px solid var(--line); }
+    .facility-meta dt { margin-bottom: .35rem; color: var(--muted); font: .6rem var(--mono); text-transform: uppercase; letter-spacing: .07em; }
+    .facility-meta dd { margin: 0; font-size: .84rem; line-height: 1.45; }
+
+    /* CAPABILITIES */
+    .capabilities { background: var(--forest); color: white; }
+    .capabilities .section-head > p { color: rgba(255,255,255,.58); }
+    .cap-list { border-top: 1px solid rgba(255,255,255,.24); }
+    .cap-row { display: grid; grid-template-columns: 100px 1fr 1fr; gap: 2rem; align-items: start; padding: 2.2rem 0; border-bottom: 1px solid rgba(255,255,255,.24); }
+    .cap-icon { width: 52px; height: 52px; color: var(--sage); }
+    .cap-row h3 { margin: 0; font: 500 clamp(1.8rem, 3vw, 3rem)/1.1 var(--serif); }
+    .cap-row p { max-width: 520px; margin: 0; color: rgba(255,255,255,.62); line-height: 1.7; }
+    .route-line { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: clamp(4rem, 8vw, 7rem); }
+    .route-stage { position: relative; padding: 2rem 1.5rem 0 0; border-top: 1px solid rgba(255,255,255,.35); }
+    .route-stage::before { content: ""; position: absolute; width: 9px; height: 9px; top: -5px; left: 0; border-radius: 50%; background: var(--rust); }
+    .route-stage span { color: var(--sage); font: .6rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .route-stage strong { display: block; margin-top: .7rem; font: 500 1.3rem var(--serif); }
+    .direction { background: var(--white); }
+    .direction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin-top: 4rem; border: 1px solid var(--line); }
+    .direction-item { background: var(--white); padding: clamp(2rem, 5vw, 4.5rem); }
+    .direction-item h3 { margin: 0 0 1.5rem; font: 500 clamp(2.2rem, 3.8vw, 3.8rem) var(--serif); }
+    .direction-item p { max-width: 550px; margin: 0; color: var(--muted); line-height: 1.75; }
+    .approval-note { margin-top: 1.2rem; color: #80604d; font: .6rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+    /* COMPLIANCE */
+    .compliance { background: #e4e7df; }
+    .compliance-lead { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+    .compliance-lead > p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .records { margin-top: 4rem; border-top: 1px solid var(--ink); }
+    .record { display: grid; grid-template-columns: 1.1fr 1fr 180px; gap: 2rem; align-items: center; padding: 1.8rem 0; border-bottom: 1px solid var(--ink); }
+    .record-title strong { display: block; font: 500 1.45rem var(--serif); }
+    .record-title span, .record-date span { color: var(--muted); font: .61rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+    .record p { margin: 0; color: var(--muted); font-size: .87rem; line-height: 1.55; }
+    .record-date { text-align: right; }
+    .status { display: inline-block; margin-top: .45rem; padding: .35rem .5rem; color: #1b5f46; background: #cbdccc; font: 500 .58rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .status.review { color: #87502f; background: #ecd5c5; }
+
+    /* LOCATIONS */
+    .locations { background: var(--white); }
+    .map-shell { display: grid; grid-template-columns: 350px 1fr; min-height: 620px; margin-top: 4rem; border: 1px solid var(--line); }
+    .map-menu { background: var(--forest); color: white; padding: .75rem; }
+    .map-option { width: 100%; display: block; padding: 1.45rem 1.2rem; color: white; background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,.17); text-align: left; cursor: pointer; transition: .2s; }
+    .map-option:hover, .map-option.active { color: var(--ink); background: var(--white); }
+    .map-option span { display: block; margin-bottom: .5rem; font: .58rem var(--mono); letter-spacing: .08em; text-transform: uppercase; opacity: .65; }
+    .map-option strong { font: 500 1.3rem var(--serif); }
+    .map-option small { display: block; margin-top: .45rem; line-height: 1.4; opacity: .7; }
+    .map-disclaimer { margin: 1.25rem; color: rgba(255,255,255,.55); font: .57rem/1.55 var(--mono); }
+    .map-frame { position: relative; min-height: 600px; background: #d5d7ce; }
+    .map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: saturate(.7); }
+    .map-caption { position: absolute; z-index: 2; left: 1.25rem; bottom: 1.25rem; max-width: 390px; padding: 1rem 1.15rem; background: var(--white); box-shadow: 0 12px 28px rgba(0,0,0,.14); }
+    .map-caption strong { display: block; font: 500 1.1rem var(--serif); }
+    .map-caption span { display: block; margin-top: .3rem; color: var(--muted); font-size: .76rem; }
+
+    /* CONTACT_FOOTER */
+    .contact { background: var(--rust); color: white; }
+    .contact-grid { display: grid; grid-template-columns: 1fr .9fr; gap: clamp(3rem, 9vw, 9rem); }
+    .contact .kicker { color: #f3d2c5; }
+    .contact-copy > p { max-width: 540px; color: rgba(255,255,255,.75); line-height: 1.7; }
+    .contact-lines { margin-top: 3rem; border-top: 1px solid rgba(255,255,255,.45); }
+    .contact-line { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.45); }
+    .contact-line span { font: .59rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .contact-line strong { font-weight: 500; }
+    .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-content: start; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { display: block; margin-bottom: .5rem; font: .6rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .field input, .field textarea { width: 100%; padding: 1rem 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.55); border-radius: 0; background: transparent; color: white; outline: 0; }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.55); }
+    .field input:focus, .field textarea:focus { border-color: white; }
+    .field textarea { min-height: 120px; resize: vertical; }
+    .submit { grid-column: 1/-1; min-height: 52px; margin-top: .5rem; border: 0; background: var(--forest); color: white; cursor: pointer; font: 500 .68rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .form-note { grid-column: 1/-1; margin: 0; color: rgba(255,255,255,.65); font: .57rem/1.55 var(--mono); }
+    .form-status { display: none; grid-column: 1/-1; padding: .85rem; background: rgba(16,44,39,.18); font-size: .82rem; }
+    footer { background: #0a1f1b; color: rgba(255,255,255,.67); padding: 3rem 0; }
+    .footer-main { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 3rem; }
+    .footer-brand { color: white; font: 500 1.8rem var(--serif); }
+    .footer-col strong { display: block; margin-bottom: .8rem; color: white; font: .6rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .footer-col p, .footer-col a { color: inherit; font-size: .78rem; line-height: 1.7; }
+    .footer-col a { display: block; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 2rem; margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.15); font: .56rem/1.6 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+
+    /* RESPONSIVE */
+    @media (max-width: 950px) {
+      .hero { grid-template-columns: 1fr 42%; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .trust-item { border-bottom: 1px solid var(--line); }
+      .profile-grid, .contact-grid { grid-template-columns: 1fr; }
+      .profile-lead { max-width: 700px; }
+      .facility, .facility:nth-child(even) { grid-template-columns: 1fr 1fr; }
+      .cap-row { grid-template-columns: 70px 1fr; }
+      .cap-row p { grid-column: 2; }
+      .record { grid-template-columns: 1fr 1fr; }
+      .record-date { grid-column: 2; text-align: left; }
+      .map-shell { grid-template-columns: 290px 1fr; }
+    }
+    @media (max-width: 720px) {
+      .site-header { height: 68px; background: rgba(16,44,39,.96); }
+      .site-header.scrolled { color: white; background: rgba(16,44,39,.96); }
+      .main-nav { position: fixed; inset: 0; z-index: -1; display: flex; flex-direction: column; justify-content: center; gap: 2rem; background: var(--forest); transform: translateX(100%); transition: transform .3s ease; }
+      .main-nav.open { transform: none; }
+      .main-nav a { font-size: .9rem; }
+      .menu-button { display: block; }
+      .hero { display: block; min-height: 850px; height: 100svh; max-height: none; }
+      .hero-media { position: absolute; inset: 0 0 auto; height: 46%; }
+      .hero-media::after { background: linear-gradient(0deg, var(--forest), transparent 70%); }
+      .hero-copy { position: relative; z-index: 3; min-height: 100%; justify-content: flex-end; padding-top: 48vh; }
+      .hero h1 { font-size: clamp(3.2rem, 15vw, 5rem); }
+      .hero-caption, .hero-index { display: none; }
+      .hero-actions { flex-wrap: wrap; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .trust-item { min-height: 90px; padding-left: 0; border-right: 0; }
+      .profile-grid, .section-head, .compliance-lead { display: block; }
+      .section-head > p, .compliance-lead > p { margin-top: 1.5rem; }
+      .fact-row { grid-template-columns: 115px 1fr; }
+      .story-image { height: 65vh; margin-top: 4rem; }
+      .facility, .facility:nth-child(even) { display: flex; flex-direction: column; }
+      .facility:nth-child(even) .facility-media { order: 0; }
+      .facility-media img { min-height: 380px; height: 55vh; }
+      .facility-content { min-height: 470px; }
+      .route-line { grid-template-columns: 1fr 1fr; gap: 2rem 0; }
+      .direction-grid { grid-template-columns: 1fr; }
+      .record { grid-template-columns: 1fr; gap: .8rem; }
+      .record-date { grid-column: 1; }
+      .map-shell { grid-template-columns: 1fr; }
+      .map-menu { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+      .map-option { padding: 1rem .7rem; }
+      .map-option small { display: none; }
+      .map-disclaimer { grid-column: 1/-1; }
+      .map-frame { min-height: 500px; }
+      .contact-form { grid-template-columns: 1fr; }
+      .field { grid-column: 1/-1; }
+      .footer-main { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Uni-Lumber home"><span class="brand-mark">UL</span><span class="brand-name">Uni-Lumber</span></a>
+      <nav class="main-nav" id="mainNav" aria-label="Primary navigation">
+        <a href="#company">Company</a><a href="#operations">Operations</a><a href="#capabilities">Capabilities</a><a href="#locations">Locations</a><a class="nav-button" href="#contact">Enquire</a>
+      </nav>
+      <button class="menu-button" id="menuButton" aria-controls="mainNav" aria-expanded="false">Menu</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-copy">
+      <div class="hero-copy-inner">
+        <p class="kicker">Sabah · Malaysia</p>
+        <h1>Sabah timber.<br><span>Verified origins.</span></h1>
+        <p class="hero-intro">Uni-Lumber coordinates Sabah-sourced sawn timber through owned mill operations in Keningau and Tawau.</p>
+        <div class="hero-actions"><a class="primary-action" href="#operations">View operations <span>→</span></a><a class="text-action" href="#contact">Product enquiry</a></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1749572855201-feb5cf658479?fm=jpg&q=85&w=1800&auto=format&fit=crop" alt="Sawmill machinery processing a timber log">
+      <span class="hero-index">Uni-Lumber · Sawn timber network</span>
+      <div class="hero-caption"><span>Two owned sawmills</span><span>Keningau / Tawau</span></div>
+    </div>
+  </section>
+  <div class="trust-bar">
+    <div class="container trust-grid">
+      <div class="trust-item"><strong>Uni-Lumber Sdn. Bhd.</strong><span>Reg. 199601012704 (385054-D)</span></div>
+      <div class="trust-item"><strong>2 owned sawmills</strong><span>Keningau + Tawau</span></div>
+      <div class="trust-item"><strong>Sabah source</strong><span>Assessed material origin</span></div>
+      <div class="trust-item"><strong>Local + export</strong><span>Documented markets</span></div>
+    </div>
+  </div>
+  <main>
+    <!-- PROFILE -->
+    <section class="profile section" id="company">
+      <div class="container">
+        <div class="profile-grid">
+          <div class="profile-lead reveal"><p class="kicker">Company</p><h2 class="heading">A connected timber business, grounded in Sabah.</h2></div>
+          <div class="profile-copy reveal">
+            <p class="body-lg">Based in Kota Kinabalu, Uni-Lumber Sdn. Bhd. is assessed as an exporter and importer of sawn timber.</p>
+            <p>Public forestry assessments record that the company purchases round logs from Sabah and directs material to its two owned sawmills: Irama Ramai Sdn. Bhd. in Keningau and Gold Rank Sdn. Bhd. in Tawau. Uni-Lumber manages sales to local and documented international markets.</p>
+            <dl class="fact-list">
+              <div class="fact-row"><dt>Registered office</dt><dd>13th Floor, Wisma Merdeka Phase II, Jalan Tun Razak, Kota Kinabalu</dd></div>
+              <div class="fact-row"><dt>Product group</dt><dd>Sawn timber</dd></div>
+              <div class="fact-row"><dt>Material origin</dt><dd>Sabah, Malaysia</dd></div>
+              <div class="fact-row"><dt>Documented markets</dt><dd>Malaysia, United Kingdom, Belgium and the Netherlands</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="story-image reveal"><img src="https://plus.unsplash.com/premium_photo-1664303728191-c20df8ee9775?fm=jpg&q=82&w=2200&auto=format&fit=crop" alt="Stacked timber logs at an industrial yard" loading="lazy"><span class="image-note">Stock photography · replace with Uni-Lumber operational photography when available</span></div>
+      </div>
+    </section>
+
+    <!-- OPERATIONS -->
+    <section class="operations section" id="operations">
+      <div class="container">
+        <div class="section-head reveal"><div><p class="kicker">Operations</p><h2 class="heading">Two facilities.<br>One supply network.</h2></div><p>The group’s mills connect Sabah’s Interior Division and east coast. Published assessments provide the operating scope and addresses shown here.</p></div>
+        <article class="facility reveal">
+          <div class="facility-media"><img src="https://plus.unsplash.com/premium_photo-1661914559864-198c8c433170?fm=jpg&q=82&w=1600&auto=format&fit=crop" alt="Timber processing equipment in a sawmill" loading="lazy"></div>
+          <div class="facility-content">
+            <div class="facility-number label"><span>Facility 01</span><span>Keningau</span></div>
+            <h3>Irama Ramai<br>Sdn. Bhd.</h3>
+            <p>The latest public assessment located describes a sawmill, kiln-dry plant and wood-preservation plant producing sawn timber and moulding.</p>
+            <dl class="facility-meta"><div><dt>Address</dt><dd>Batu 5, Jalan Keningau–Kimanis, Keningau</dd></div><div><dt>Registration</dt><dd>200201004805<br>(572468-V)</dd></div></dl>
+          </div>
+        </article>
+        <article class="facility reveal">
+          <div class="facility-media"><img src="https://plus.unsplash.com/premium_photo-1663012912880-7b2baa3fafa6?fm=jpg&q=82&w=1600&auto=format&fit=crop" alt="Processed timber boards stacked at a mill" loading="lazy"></div>
+          <div class="facility-content">
+            <div class="facility-number label"><span>Facility 02</span><span>Tawau</span></div>
+            <h3>Gold Rank<br>Sdn. Bhd.</h3>
+            <p>Gold Rank’s current public compliance statement covers sawmilling of Sabah-origin timber at its Bombalai facility in Tawau.</p>
+            <dl class="facility-meta"><div><dt>Address</dt><dd>Off KM 19, Kg Pitas, Bombalai, Merotai Highway, Tawau</dd></div><div><dt>Registration</dt><dd>198901012367<br>(189675-K)</dd></div></dl>
+          </div>
+        </article>
+      </div>
+    </section>
+    <!-- CAPABILITIES -->
+    <section class="capabilities section" id="capabilities">
+      <div class="container">
+        <div class="section-head reveal"><div><p class="kicker">Capabilities</p><h2 class="heading">From Sabah log<br>to sawn product.</h2></div><p>Only activities supported by public assessment records are shown. Capacity figures and machinery specifications should be added after company confirmation.</p></div>
+        <div class="cap-list">
+          <article class="cap-row reveal"><svg class="cap-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="20" stroke="currentColor"/><circle cx="26" cy="26" r="11" stroke="currentColor"/><path d="M26 6v40M6 26h40" stroke="currentColor"/></svg><h3>Sawmilling</h3><p>Round logs purchased in Sabah are routed to Keningau and Tawau for conversion into sawn timber.</p></article>
+          <article class="cap-row reveal"><svg class="cap-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M8 13h36v26H8zM15 20h22M15 27h22M15 34h14" stroke="currentColor"/></svg><h3>Drying & preservation</h3><p>Irama Ramai’s latest located assessment includes kiln-dry and wood-preservation plants within its company scope.</p></article>
+          <article class="cap-row reveal"><svg class="cap-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M6 34h40M11 34V19h25l6 8v7M17 40a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM38 40a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor"/></svg><h3>Trade & dispatch</h3><p>Uni-Lumber manages local sales and export trade. Recent reports document buyers in the UK and continental Europe.</p></article>
+        </div>
+        <div class="route-line reveal"><div class="route-stage"><span>01 / Source</span><strong>Sabah logs</strong></div><div class="route-stage"><span>02 / Convert</span><strong>Keningau + Tawau</strong></div><div class="route-stage"><span>03 / Prepare</span><strong>Sawn timber</strong></div><div class="route-stage"><span>04 / Supply</span><strong>Local + export</strong></div></div>
+      </div>
+    </section>
+
+    <!-- DIRECTION -->
+    <section class="direction section">
+      <div class="container">
+        <p class="kicker reveal">Corporate direction</p>
+        <h2 class="heading reveal">Built for dependable supply<br>and lasting relationships.</h2>
+        <div class="direction-grid reveal">
+          <article class="direction-item"><h3>Vision</h3><p>To be a trusted Sabah timber group recognised for dependable products, responsible operations and durable business relationships.</p></article>
+          <article class="direction-item"><h3>Mission</h3><p>To connect capable local sawmill operations, disciplined processing and responsive service to create value for customers and the communities where we operate.</p></article>
+        </div>
+        <p class="approval-note">Proposed wording · requires Uni-Lumber management approval before publication</p>
+      </div>
+    </section>
+
+    <!-- COMPLIANCE -->
+    <section class="compliance section" id="compliance">
+      <div class="container">
+        <div class="compliance-lead reveal"><div><p class="kicker">Legality & chain of custody</p><h2 class="heading-sm">Public records,<br>clearly dated.</h2></div><p>Compliance statements are time-bound. The dates shown reflect public GFS records located during research on 11 November 2026.</p></div>
+        <div class="records reveal">
+          <article class="record"><div class="record-title"><strong>Uni-Lumber Sdn. Bhd.</strong><span>GFS 233 WTP · Sabah TLAS+ P5–6</span></div><p>Recommended for a Statement of Compliance and Sabah TLAS+ Compliance Certificate in July 2026.</p><div class="record-date"><span>Valid to 05 Jul 2027</span><br><a class="status" href="https://gfsinc.biz/wp-content/uploads/2019/05/GFSSBH-004-984-Sabah-TLAS-P5-6-78-optional-Summary-Uni-Lumber-Jul-2026.pdf" target="_blank" rel="noopener">View record ↗</a></div></article>
+          <article class="record"><div class="record-title"><strong>Gold Rank Sdn. Bhd.</strong><span>GFS 010 WTP · Verified Legal</span></div><p>Statement covers the Sabah Legality Standard for Chain of Custody and Sabah-origin sawn timber.</p><div class="record-date"><span>Valid to 23 Feb 2027</span><br><a class="status" href="https://gfsinc.biz/wp-content/uploads/2011/05/GFS-010-WTP-Compliance-Statement-Gold-Rank-4.pdf" target="_blank" rel="noopener">View record ↗</a></div></article>
+          <article class="record"><div class="record-title"><strong>Irama Ramai Sdn. Bhd.</strong><span>Latest public report located</span></div><p>The August 2025 assessment recommended certification; a newer public renewal was not located.</p><div class="record-date"><span>Ended 17 Aug 2026</span><br><a class="status review" href="https://gfsinc.biz/wp-content/uploads/2015/09/GFSSBH-004-864-Sabah-TLAS-P5-6-Summary-Irama-Ramai-Aug-2025.pdf" target="_blank" rel="noopener">Renewal to confirm ↗</a></div></article>
+        </div>
+      </div>
+    </section>
+    <!-- LOCATIONS -->
+    <section class="locations section" id="locations">
+      <div class="container">
+        <div class="section-head reveal"><div><p class="kicker">Locations</p><h2 class="heading">Operating across Sabah.</h2></div><p>The map uses postal addresses published in public assessment records. Confirm the exact entrance coordinates before arranging a mill visit.</p></div>
+        <div class="map-shell reveal">
+          <div class="map-menu" role="tablist" aria-label="Company locations">
+            <button class="map-option active" role="tab" aria-selected="true" data-place="Wisma Merdeka Phase II, Jalan Tun Razak, 88000 Kota Kinabalu, Sabah, Malaysia" data-title="Uni-Lumber Sdn. Bhd." data-address="13th Floor, Wisma Merdeka Phase II · Kota Kinabalu"><span>Head office</span><strong>Kota Kinabalu</strong><small>Jalan Tun Razak</small></button>
+            <button class="map-option" role="tab" aria-selected="false" data-place="Batu 5, Jalan Keningau-Kimanis, Keningau, Sabah, Malaysia" data-title="Irama Ramai Sdn. Bhd." data-address="Batu 5, Jalan Keningau–Kimanis · Keningau"><span>Sawmill 01</span><strong>Keningau</strong><small>Jalan Keningau–Kimanis</small></button>
+            <button class="map-option" role="tab" aria-selected="false" data-place="Off KM 19, Kg Pitas, Bombalai, Merotai Highway, Tawau, Sabah, Malaysia" data-title="Gold Rank Sdn. Bhd." data-address="Off KM 19, Kg Pitas, Bombalai · Tawau"><span>Sawmill 02</span><strong>Tawau</strong><small>Merotai Highway</small></button>
+            <p class="map-disclaimer">Published addresses · exact gate coordinates require company confirmation.</p>
+          </div>
+          <div class="map-frame">
+            <iframe id="mapFrame" title="Map showing Uni-Lumber office in Kota Kinabalu" src="https://www.google.com/maps?q=Wisma%20Merdeka%20Phase%20II%2C%20Jalan%20Tun%20Razak%2C%2088000%20Kota%20Kinabalu%2C%20Sabah%2C%20Malaysia&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-caption"><strong id="mapTitle">Uni-Lumber Sdn. Bhd.</strong><span id="mapAddress">13th Floor, Wisma Merdeka Phase II · Kota Kinabalu</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <p class="kicker">Product & supply enquiries</p><h2 class="heading">Let’s discuss<br>your requirements.</h2>
+          <p>Contact the Kota Kinabalu office for product availability, specification requests, supply partnerships or company information.</p>
+          <div class="contact-lines"><div class="contact-line"><span>Telephone</span><strong><a href="tel:+6088269499">+60 88 269 499</a></strong></div><div class="contact-line"><span>Email</span><strong><a href="mailto:unilumber@yahoo.com">unilumber@yahoo.com</a></strong></div><div class="contact-line"><span>Office</span><strong>Wisma Merdeka Phase II, Kota Kinabalu</strong></div></div>
+        </div>
+        <form class="contact-form reveal" id="contactForm">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name" placeholder="Your name"></div>
+          <div class="field"><label for="companyName">Company</label><input id="companyName" name="company" autocomplete="organization" placeholder="Company name"></div>
+          <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="name@company.com"></div>
+          <div class="field full"><label for="message">Enquiry</label><textarea id="message" name="message" required placeholder="Product, dimensions, volume, destination..."></textarea></div>
+          <button class="submit" type="submit">Prepare email enquiry</button>
+          <div class="form-status" id="formStatus">Your email application should open with the enquiry prepared.</div>
+          <p class="form-note">This form opens your email application. Information is not stored by this website.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-main"><div><div class="footer-brand">Uni-Lumber Sdn. Bhd.</div></div><div class="footer-col"><strong>Operations</strong><p>Kota Kinabalu<br>Keningau<br>Tawau<br>Sabah, Malaysia</p></div><div class="footer-col"><strong>Public sources</strong><a href="http://stia.com.my/members_view.cfm?category=Veneering&id=1204" target="_blank" rel="noopener">STIA member record ↗</a><a href="https://gfsinc.biz/wp-content/uploads/2019/05/GFSSBH-004-984-Sabah-TLAS-P5-6-78-optional-Summary-Uni-Lumber-Jul-2026.pdf" target="_blank" rel="noopener">2026 GFS assessment ↗</a></div></div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Uni-Lumber Sdn. Bhd.</span><span>Research checked 11 Nov 2026 · Stock photography used</span></div>
+    </div>
+  </footer>
+  <script>
+    const header = document.getElementById('siteHeader');
+    const menuButton = document.getElementById('menuButton');
+    const nav = document.getElementById('mainNav');
+    const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 32);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    menuButton.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.textContent = open ? 'Close' : 'Menu';
+      document.body.classList.toggle('menu-open', open);
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false'); menuButton.textContent = 'Menu'; document.body.classList.remove('menu-open');
+    }));
+
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in');
+    }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+
+    const frame = document.getElementById('mapFrame');
+    document.querySelectorAll('.map-option').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('.map-option').forEach(item => { item.classList.remove('active'); item.setAttribute('aria-selected', 'false'); });
+      button.classList.add('active'); button.setAttribute('aria-selected', 'true');
+      frame.src = `https://www.google.com/maps?q=${encodeURIComponent(button.dataset.place)}&output=embed`;
+      frame.title = `Map showing ${button.dataset.title}`;
+      document.getElementById('mapTitle').textContent = button.dataset.title;
+      document.getElementById('mapAddress').textContent = button.dataset.address;
+    }));
+
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const subject = `Website enquiry from ${data.get('name')}${data.get('company') ? ` · ${data.get('company')}` : ''}`;
+      const body = `Name: ${data.get('name')}\nCompany: ${data.get('company') || 'Not provided'}\nEmail: ${data.get('email')}\n\nEnquiry:\n${data.get('message')}`;
+      document.getElementById('formStatus').style.display = 'block';
+      window.location.href = `mailto:unilumber@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
