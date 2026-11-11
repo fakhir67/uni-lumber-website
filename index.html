@@ -19,6 +19,7 @@
       --muted: #68645d;
       --rust: #ff5a1f;
       --sage: #ffb28f;
+      --brand-green: #197342;
       --line: #c9c0b2;
       --sans: "IBM Plex Sans", sans-serif;
       --serif: "Source Serif 4", Georgia, serif;
@@ -48,30 +49,30 @@
     .reveal.in { opacity: 1; transform: none; }
 
     /* NAV_HERO */
-    .site-header { position: fixed; z-index: 20; inset: 0 0 auto; height: 76px; color: white; transition: background .25s ease, color .25s ease, box-shadow .25s ease; }
-    .site-header.scrolled { color: white; background: rgba(11,11,9,.94); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(255,90,31,.35); }
+    .site-header { position: fixed; z-index: 20; inset: 0 0 auto; height: 88px; color: white; transition: background .25s ease, color .25s ease, box-shadow .25s ease; }
+    .site-header.scrolled { color: white; background: rgba(11,11,9,.94); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(25,115,66,.55); }
     .nav-wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: flex; align-items: center; gap: .85rem; color: inherit; text-decoration: none; }
-    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--rust); color: var(--rust); font: 500 .65rem var(--mono); transform: rotate(-3deg); }
-    .brand-name { font: 600 1.1rem var(--sans); letter-spacing: -.02em; }
+    .brand { display: flex; align-items: center; color: inherit; text-decoration: none; }
+    .brand-logo-wrap { width: 90px; height: 64px; display: grid; place-items: center; padding: 4px 8px; background: #fff; border-bottom: 3px solid var(--brand-green); }
+    .brand-logo { width: 100%; height: 100%; object-fit: contain; }
     .main-nav { display: flex; align-items: center; gap: clamp(1.2rem, 2.5vw, 2.6rem); }
     .main-nav a { color: inherit; text-decoration: none; font: 500 .67rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .main-nav a:not(.nav-button) { padding: .6rem 0; }
-    .main-nav a:not(.nav-button):hover { color: var(--rust); }
-    .nav-button { padding: .8rem 1.05rem; border: 1px solid var(--rust); color: white !important; transition: .2s; }
-    .nav-button:hover, .site-header.scrolled .nav-button:hover { background: var(--rust); border-color: var(--rust); color: var(--ink) !important; }
+    .main-nav a:not(.nav-button):hover { color: #78bd92; }
+    .nav-button { padding: .8rem 1.05rem; border: 1px solid #55a878; color: white !important; transition: .2s; }
+    .nav-button:hover, .site-header.scrolled .nav-button:hover { background: var(--brand-green); border-color: var(--brand-green); color: white !important; }
     .menu-button { display: none; border: 0; background: none; color: inherit; padding: .5rem 0; font: 500 .7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 
     .hero { min-height: 780px; height: 100svh; max-height: 980px; position: relative; display: grid; grid-template-columns: 54% 46%; background: var(--forest); color: white; overflow: hidden; }
-    .hero::before { content: ""; position: absolute; z-index: 4; left: 54%; top: 0; bottom: 0; width: 4px; background: var(--rust); pointer-events: none; }
+    .hero::before { content: ""; position: absolute; z-index: 4; left: 54%; top: 0; bottom: 0; width: 4px; background: var(--brand-green); pointer-events: none; }
     .hero-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: 9rem var(--gutter) clamp(3rem, 7vh, 5.5rem); }
     .hero-copy-inner { max-width: 700px; }
-    .hero .kicker { color: var(--rust); }
+    .hero .kicker { color: #78bd92; }
     .hero h1 { margin: 0; font: 500 clamp(3.6rem, 6.7vw, 7rem)/.94 var(--serif); letter-spacing: -.055em; }
-    .hero h1 span { color: var(--rust); }
+    .hero h1 span { color: #8ec4a0; }
     .hero-intro { max-width: 590px; margin: 2rem 0 0; color: rgba(255,255,255,.72); font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.65; }
     .hero-actions { display: flex; gap: 1.4rem; align-items: center; margin-top: 2.3rem; }
-    .primary-action { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; min-height: 50px; padding: 0 1.3rem; background: var(--rust); color: var(--ink); text-decoration: none; font: 500 .69rem var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: .2s; }
+    .primary-action { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; min-height: 50px; padding: 0 1.3rem; background: var(--brand-green); color: white; text-decoration: none; font: 500 .69rem var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: .2s; }
     .primary-action:hover { background: white; transform: translateY(-2px); }
     .text-action { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.55); padding-bottom: .3rem; font: .69rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .hero-media { position: relative; min-width: 0; }
@@ -79,13 +80,13 @@
     .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,11,9,.18), transparent 35%), linear-gradient(0deg, rgba(11,11,9,.68), transparent 52%); }
     .hero-caption { position: absolute; z-index: 2; left: 2rem; right: 2rem; bottom: 2rem; display: flex; justify-content: space-between; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.5); font: .62rem/1.5 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
     .hero-index { position: absolute; z-index: 2; top: 7rem; right: 2rem; color: white; font: .65rem var(--mono); writing-mode: vertical-rl; letter-spacing: .15em; text-transform: uppercase; }
-    .trust-bar { background: var(--rust); color: var(--ink); border-bottom: 1px solid var(--ink); }
+    .trust-bar { background: var(--forest-2); color: white; border-top: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid var(--ink); }
     .trust-grid { display: grid; grid-template-columns: 1.1fr repeat(3, 1fr); }
-    .trust-item { min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 1.25rem 2rem; border-right: 1px solid rgba(17,17,14,.35); }
+    .trust-item { min-height: 110px; display: flex; flex-direction: column; justify-content: center; padding: 1.25rem 2rem; border-right: 1px solid rgba(255,255,255,.16); }
     .trust-item:first-child { padding-left: 0; }
     .trust-item:last-child { border: 0; }
     .trust-item strong { font: 500 1.3rem var(--serif); }
-    .trust-item span { margin-top: .35rem; color: rgba(17,17,14,.7); font: .62rem/1.4 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .trust-item span { margin-top: .35rem; color: rgba(255,255,255,.58); font: .62rem/1.4 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
     /* CONTENT */
     .profile { background: var(--white); }
     .profile-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(3rem, 9vw, 9rem); align-items: start; }
@@ -161,9 +162,9 @@
     .species-option .species-arrow { padding-right: 1rem; font: 1rem var(--mono); opacity: .4; }
     .species-option.active .species-arrow { opacity: 1; transform: translateX(3px); }
     .species-display { position: sticky; top: 108px; min-height: 660px; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(1.5rem,4vw,3.5rem); background: #25231f; overflow: hidden; }
-    .species-display::before { content: ""; position: absolute; z-index: -2; inset: 0; background: url('assets/gold-rank-logs.webp') center/cover; filter: grayscale(1) contrast(1.08); transform: scale(1.02); transition: transform .8s ease; }
-    .species-display::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,rgba(11,11,9,.18),rgba(11,11,9,.97) 78%), linear-gradient(90deg,rgba(255,90,31,.15),transparent); }
-    .species-display.is-changing::before { transform: scale(1.06); }
+    .species-micrograph { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform .8s ease, opacity .2s ease; }
+    .species-display::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,rgba(11,11,9,.04),rgba(11,11,9,.98) 78%), linear-gradient(90deg,rgba(255,90,31,.12),transparent); }
+    .species-display.is-changing .species-micrograph { transform: scale(1.06); opacity: .45; }
     .species-display-top { position: absolute; inset: 1.5rem 1.5rem auto; display: flex; justify-content: space-between; align-items: center; }
     .species-counter { display: grid; place-items: center; width: 54px; height: 54px; background: var(--rust); color: var(--ink); font: 500 .7rem var(--mono); }
     .species-display-tag { color: rgba(255,255,255,.7); font: .58rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
@@ -173,6 +174,8 @@
     .species-stat span { display: block; color: rgba(255,255,255,.45); font: .56rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .species-stat strong { display: block; margin-top: .5rem; font-weight: 500; line-height: 1.45; }
     .species-note { margin: 1.5rem 0 0; color: rgba(255,255,255,.63); font-size: .82rem; line-height: 1.65; }
+    .species-image-credit { position: absolute; top: 5.5rem; right: 1.5rem; max-width: 230px; padding: .55rem .7rem; color: white; background: rgba(11,11,9,.72); font: .54rem/1.45 var(--mono); letter-spacing: .05em; text-align: right; text-transform: uppercase; }
+    .species-image-credit a { color: var(--rust); }
     .species-display.is-changing h3, .species-display.is-changing .species-latin { opacity: .25; transform: translateY(5px); }
     .species-source { margin-top: 1.5rem; color: rgba(255,255,255,.42); font: .58rem/1.65 var(--mono); }
 
@@ -262,8 +265,9 @@
       .map-shell { grid-template-columns: 290px 1fr; }
     }
     @media (max-width: 720px) {
-      .site-header { height: 68px; background: rgba(16,44,39,.96); }
-      .site-header.scrolled { color: white; background: rgba(16,44,39,.96); }
+      .site-header { height: 74px; background: rgba(11,11,9,.96); }
+      .site-header.scrolled { color: white; background: rgba(11,11,9,.96); }
+      .brand-logo-wrap { width: 75px; height: 54px; }
       .main-nav { position: fixed; inset: 0; z-index: -1; display: flex; flex-direction: column; justify-content: center; gap: 2rem; background: var(--forest); transform: translateX(100%); transition: transform .3s ease; }
       .main-nav.open { transform: none; }
       .main-nav a { font-size: .9rem; }
@@ -292,6 +296,7 @@
       .species-list { width: 100%; max-height: 500px; }
       .species-display { position: relative; top: auto; width: 100%; min-height: 560px; }
       .species-data { grid-template-columns: 1fr; gap: 1rem; }
+      .species-image-credit { top: 5rem; max-width: 190px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 380px 240px 240px; }
       .gallery-item:first-child { grid-column: 1/-1; grid-row: auto; }
       .gallery-item:last-child { grid-column: 1/-1; }
@@ -318,7 +323,7 @@
   <!-- NAV -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="Uni-Lumber home"><span class="brand-mark">UL</span><span class="brand-name">Uni-Lumber</span></a>
+      <a class="brand" href="#top" aria-label="Uni-Lumber home"><span class="brand-logo-wrap"><img class="brand-logo" src="assets/uni-lumber-logo.webp" alt="Uni-Lumber logo"></span></a>
       <nav class="main-nav" id="mainNav" aria-label="Primary navigation">
         <a href="#company">Company</a><a href="#operations">Sawmills</a><a href="#species">Species</a><a href="#locations">Locations</a><a class="nav-button" href="#contact">Enquire</a>
       </nav>
@@ -433,14 +438,16 @@
             <button class="species-option" role="tab" aria-selected="false" data-index="12" data-name="Resak Batu" data-latin="Cotylelobium melanoxylon · Resak group" data-class="Heavy hardwood" data-density="Group properties" data-note="Documented as Cotylelobium melanoxylon within the Resak commercial group. Confirm the required technical characteristics at enquiry."><span class="species-no">12</span><span><strong>Resak Batu</strong><em>Cotylelobium melanoxylon</em></span><span class="species-arrow">→</span></button>
           </div>
           <article class="species-display" id="speciesDisplay" aria-live="polite">
+            <img class="species-micrograph" id="speciesImage" src="assets/species-red-seraya.webp" alt="Light Red Meranti vessel-detail reference from the STIDC Timber Portal">
             <div class="species-display-top"><span class="species-counter" id="speciesCounter">01</span><span class="species-display-tag">Timber file / documented range</span></div>
+            <div class="species-image-credit"><span id="speciesImageLabel">Vessel detail · Light Red Meranti reference</span><br><a id="speciesImageLink" href="https://timberportal.sarawaktimber.gov.my/result.php?ID=53" target="_blank" rel="noopener">STIDC Timber Portal ↗</a></div>
             <h3 id="speciesName">Red Seraya</h3>
             <p class="species-latin" id="speciesLatin">Shorea spp. · Light Red Meranti group</p>
             <div class="species-data"><div class="species-stat"><span>Timber class</span><strong id="speciesClass">Light hardwood</strong></div><div class="species-stat"><span>Air-dry density / record</span><strong id="speciesDensity">385–755 kg/m³</strong></div></div>
             <p class="species-note" id="speciesNote">A commercial group covering several Shorea species. Confirm the exact botanical species, grade and dimensions when ordering.</p>
           </article>
         </div>
-        <p class="species-source">Sources: Irama Ramai Sabah TLAS assessment (13 August 2025); Malaysian Timber Council timber-species reference. *Keruing density shown for Sabah species. Scientific names follow the assessment nomenclature; current taxonomic databases may place Shorea pauciflora under Rubroshorea pauciflora. Confirm species, origin documentation, grade and availability for every order.</p>
+        <p class="species-source">Sources: Irama Ramai Sabah TLAS assessment (13 August 2025); Malaysian Timber Council timber-species reference; vessel-detail photography from the STIDC Timber Portal. Portal photographs show the named species or the closest stated commercial group equivalent; they are anatomical references, not photographs of Uni-Lumber stock. *Keruing density shown for Sabah species. Confirm species, origin documentation, grade and availability for every order.</p>
       </div>
     </section>
 
@@ -552,6 +559,20 @@
 
     const speciesDisplay = document.getElementById('speciesDisplay');
     const speciesOptions = [...document.querySelectorAll('.species-option')];
+    const speciesMedia = [
+      { image: 'assets/species-red-seraya.webp', label: 'Vessel detail · Light Red Meranti reference', id: 53 },
+      { image: 'assets/species-yellow-seraya.webp', label: 'Vessel detail · Yellow Meranti reference', id: 50 },
+      { image: 'assets/species-selangan-batu.webp', label: 'Vessel detail · Selangan Batu', id: 37 },
+      { image: 'assets/species-keruing.webp', label: 'Vessel detail · Keruing group', id: 20 },
+      { image: 'assets/species-kapur.webp', label: 'Vessel detail · Kapur group', id: 15 },
+      { image: 'assets/species-oba-suluk.webp', label: 'Vessel detail · Dark Red Meranti group reference', id: 8 },
+      { image: 'assets/species-mempening.webp', label: 'Vessel detail · Empenit / Mempening', id: 10 },
+      { image: 'assets/species-keranji.webp', label: 'Vessel detail · Keranji group', id: 19 },
+      { image: 'assets/species-kedondong.webp', label: 'Vessel detail · Seladah / Kedondong reference', id: 40 },
+      { image: 'assets/species-gagil.webp', label: 'Vessel detail · Merawan group reference', id: 23 },
+      { image: 'assets/species-kempas.webp', label: 'Vessel detail · Menggris / Kempas', id: 25 },
+      { image: 'assets/species-resak-batu.webp', label: 'Vessel detail · Resak group reference', id: 38 }
+    ];
     const selectSpecies = button => {
       speciesOptions.forEach(option => {
         const selected = option === button;
@@ -560,12 +581,17 @@
       });
       speciesDisplay.classList.add('is-changing');
       window.setTimeout(() => {
+        const media = speciesMedia[speciesOptions.indexOf(button)];
         document.getElementById('speciesCounter').textContent = button.dataset.index;
         document.getElementById('speciesName').textContent = button.dataset.name;
         document.getElementById('speciesLatin').textContent = button.dataset.latin;
         document.getElementById('speciesClass').textContent = button.dataset.class;
         document.getElementById('speciesDensity').textContent = button.dataset.density;
         document.getElementById('speciesNote').textContent = button.dataset.note;
+        document.getElementById('speciesImage').src = media.image;
+        document.getElementById('speciesImage').alt = `${media.label} from the STIDC Timber Portal`;
+        document.getElementById('speciesImageLabel').textContent = media.label;
+        document.getElementById('speciesImageLink').href = `https://timberportal.sarawaktimber.gov.my/result.php?ID=${media.id}`;
         speciesDisplay.classList.remove('is-changing');
       }, 140);
     };
